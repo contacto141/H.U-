@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Mapa actual del funnel comercial: adquisición, calificación, reactivación, asignación y conversión." />
+  <title>Funnel Intelligence · Mapa AS-IS</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="Funnel Intelligence, inicio">
+        <span class="brand-mark">FI</span>
+        <span><strong>Funnel Intelligence</strong><small>Mapa del proceso actual · AS-IS</small></span>
+      </a>
+      <nav class="top-actions" aria-label="Controles del mapa">
+        <button class="ghost-button" id="expandAll" type="button">Mostrar fricciones</button>
+        <span class="version">v0.1 · Validación interna</span>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="intro" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow">Una sola lectura para Finanzas, Paid, Marketing, CXC y Comercial</p>
+          <h1 id="page-title">De la inversión a la venta,<br><span>sin perder la historia del lead.</span></h1>
+          <p class="intro-copy">Este mapa representa cómo opera hoy el funnel. Los puntos marcados con <b class="inline-star">*</b> concentran fricción, pérdida de trazabilidad o decisiones tomadas con información incompleta.</p>
+        </div>
+        <div class="signal-panel" aria-label="Volumen y conversiones actuales">
+          <div><span>Leads / mes</span><strong>13–15K</strong></div>
+          <div><span>Lead → MQL</span><strong>5.18%</strong></div>
+          <div><span>Lead → SQL</span><strong>≈1.8%</strong></div>
+          <p>Los porcentajes requieren validar denominador y periodo.</p>
+        </div>
+      </section>
+
+      <section class="source-ribbon" aria-label="Fuentes del funnel">
+        <span class="ribbon-label">Fuentes actuales</span>
+        <span>Finanzas</span><span>Meta</span><span>Google</span><span>TikTok</span><span>YouTube</span><span>HubSpot</span><span>CXC</span><span>Génesis</span><span>Bots</span>
+      </section>
+
+      <section class="map-section" aria-labelledby="map-title">
+        <div class="section-heading">
+          <div><p class="section-kicker">Mapa ejecutivo</p><h2 id="map-title">El funnel completo</h2></div>
+          <div class="legend"><span><i class="dot critical"></i>Fricción crítica</span><span><i class="dot risk"></i>Riesgo operativo</span><span><i class="dot source"></i>Fuente existente</span></div>
+        </div>
+
+        <div class="stage-stack">
+          <article class="stage" data-stage="01">
+            <header class="stage-title"><span>01</span><div><small>Finanzas + Paid Media</small><h3>Planeación e inversión</h3></div></header>
+            <div class="stage-flow four-cols">
+              <button class="node friction critical" data-friction="targets"><b class="star">*</b><small>Finanzas</small><strong>Presupuesto por canal</strong><span>Monto mensual aprobado</span></button>
+              <span class="connector" aria-hidden="true">→</span>
+              <button class="node friction critical" data-friction="distribution"><b class="star">*</b><small>René</small><strong>Distribución propuesta</strong><span>Basada en el mes anterior</span></button>
+              <span class="connector" aria-hidden="true">→</span>
+              <button class="node friction critical" data-friction="creative"><b class="star">*</b><small>Social + Paid</small><strong>Campañas y creativos</strong><span>Sin memoria consolidada</span></button>
+              <span class="connector" aria-hidden="true">→</span>
+              <button class="node friction risk" data-friction="monitoring"><b class="star">*</b><small>Paid Media</small><strong>Campañas activas</strong><span>Lectura tardía del rendimiento</span></button>
+            </div>
+          </article>
+
+          <article class="stage" data-stage="02">
+            <header class="stage-title"><span>02</span><div><small>Ad platforms + HubSpot</small><h3>Captación y atribución</h3></div></header>
+            <div class="stage-flow four-cols">
+              <div class="node source-node"><small>Canales</small><strong>Meta · Google · TikTok</strong><span>YouTube e Instagram</span></div>
+              <span class="connector" aria-hidden="true">→</span>
+              <button class="node friction risk" data-friction="abandonment"><b class="star">*</b><small>Captación</small><strong>Formulario / Lead Ads</strong><span>Abandono no visible</span></button>
+              <span class="connector" aria-hidden="true">→</span>
+              <div class="node source-node"><small>CRM</small><strong>Contacto + ticket</strong><span>Se crean en HubSpot</span></div>
+              <span class="connector" aria-hidden="true">→</span>
+              <button class="node friction critical" data-friction="attribution"><b class="star">*</b><small>Trazabilidad</small><strong>Lead disponible</strong><span>ID de anuncio no consolidado</span></button>
+            </div>
+          </article>
+
+          <article class="stage split-stage" data-stage="03">
+            <header class="stage-title"><span>03</span><div><small>CXC</small><h3>Contacto y calificación manual</h3></div></header>
+            <div class="stage-flow primary-flow">
+              <button class="node friction risk" data-friction="queue"><b class="star">*</b><small>Entrada</small><strong>Cola inmediata de CXC</strong><span>Sin SLA transversal visible</span></button>
+              <span class="connector">→</span>
+              <div class="node"><small>Primer abordaje</small><strong>CXC contacta manualmente</strong><span>Califica nombre, edad e interés</span></div>
+              <span class="connector">→</span>
+              <div class="decision"><strong>¿Responde?</strong><span>Primer intento</span></div>
+            </div>
+
+            <div class="branch-grid">
+              <div class="branch yes-branch">
+                <span class="branch-label">SÍ RESPONDE</span>
+                <div class="branch-line"></div>
+                <button class="node friction critical" data-friction="qualification"><b class="star">*</b><small>CXC</small><strong>Validación manual</strong><span>Criterios y motivo de descarte</span></button>
+                <span class="connector">→</span>
+                <div class="decision"><strong>¿Califica?</strong><span>Regla actual</span></div>
+              </div>
+              <div class="branch no-branch">
+                <span class="branch-label">NO RESPONDE</span>
+                <div class="branch-line"></div>
+                <button class="node friction critical" data-friction="reactivation"><b class="star">*</b><small>Marketing + bots</small><strong>Flujo de reactivación</strong><span>Intentos 2 · 3 · 4 · 5</span></button>
+                <span class="connector">→</span>
+                <div class="decision"><strong>¿Responde?</strong><span>Secuencia multicanal</span></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="stage" data-stage="04">
+            <header class="stage-title"><span>04</span><div><small>Dos rutas, una misma etapa</small><h3>Conversión a MQL</h3></div></header>
+            <div class="dual-entry">
+              <div class="route-card primary-route"><small>Ruta primaria</small><strong>CXC valida criterios</strong><span>Si cumple, CXC cambia la calificación.</span></div>
+              <div class="merge-arrow" aria-hidden="true">↘</div>
+              <button class="mql-core friction risk" data-friction="mql-origin"><b class="star">*</b><small>HubSpot</small><strong>MQL</strong><span>Debe conservar el origen de conversión</span></button>
+              <div class="merge-arrow" aria-hidden="true">↗</div>
+              <div class="route-card recovery-route"><small>Ruta reactivada</small><strong>Responde al bot</strong><span>Entra directamente como MQL.</span></div>
+            </div>
+            <div class="exit-row">
+              <div class="exit muted"><span>Sin calificación</span><strong>Descalificado + motivo</strong></div>
+              <div class="exit muted"><span>Sin respuesta</span><strong>No contactable</strong></div>
+            </div>
+          </article>
+
+          <article class="stage" data-stage="05">
+            <header class="stage-title"><span>05</span><div><small>CXC + Comercial</small><h3>Asignación y seguimiento</h3></div></header>
+            <div class="stage-flow four-cols">
+              <button class="node friction critical" data-friction="assignment"><b class="star">*</b><small>Handoff</small><strong>Asignación de facilitador</strong><span>Demora después del MQL</span></button>
+              <span class="connector">→</span>
+              <button class="node friction risk" data-friction="acceptance"><b class="star">*</b><small>Facilitador</small><strong>Recepción del MQL</strong><span>Aceptación y carga no visibles</span></button>
+              <span class="connector">→</span>
+              <div class="node"><small>Comercial</small><strong>Seguimiento</strong><span>Contacto, interés y desarrollo</span></div>
+              <span class="connector">→</span>
+              <div class="node outcome"><small>Resultado</small><strong>SQL → Venta</strong><span>Bloque por terminar de mapear</span></div>
+            </div>
+          </article>
+
+          <article class="feedback-loop">
+            <button class="feedback friction critical" data-friction="feedback"><b class="star">*</b><span class="loop-icon">↺</span><div><small>Circuito inexistente</small><strong>La calidad observada por CXC y Comercial no regresa automáticamente a Paid.</strong></div></button>
+          </article>
+        </div>
+      </section>
+
+      <section class="reading-section" aria-labelledby="reading-title">
+        <div><p class="section-kicker">La lectura transversal</p><h2 id="reading-title">Un lead, varias verdades aisladas.</h2></div>
+        <div class="truth-grid">
+          <article><span>01</span><h3>Paid sabe cuánto costó</h3><p>Pero no necesariamente si terminó como MQL, SQL o venta.</p></article>
+          <article><span>02</span><h3>HubSpot sabe en qué etapa está</h3><p>Pero la información está dispersa en tableros y propiedades.</p></article>
+          <article><span>03</span><h3>CXC sabe por qué no avanzó</h3><p>Pero esa señal no vuelve de forma estructurada a inversión.</p></article>
+          <article><span>04</span><h3>El facilitador conoce la intención</h3><p>Pero el ciclo no queda unido al anuncio que originó el lead.</p></article>
+        </div>
+      </section>
+    </main>
+
+    <footer><span>Funnel Intelligence · Documento vivo</span><span>Primero validamos el AS-IS. Después diseñamos el TO-BE y su stack.</span></footer>
+  </div>
+
+  <div class="drawer-backdrop" id="drawerBackdrop" hidden></div>
+  <aside class="drawer" id="frictionDrawer" aria-hidden="true" aria-labelledby="drawerTitle">
+    <button class="close-button" id="closeDrawer" type="button" aria-label="Cerrar detalle">×</button>
+    <p class="drawer-kicker" id="drawerArea">Punto de fricción</p>
+    <h2 id="drawerTitle">Detalle</h2>
+    <p class="drawer-summary" id="drawerSummary"></p>
+    <dl>
+      <div><dt>Qué sucede hoy</dt><dd id="drawerToday"></dd></div>
+      <div><dt>Impacto</dt><dd id="drawerImpact"></dd></div>
+      <div><dt>Dato que falta</dt><dd id="drawerMissing"></dd></div>
+      <div><dt>Decisión afectada</dt><dd id="drawerDecision"></dd></div>
+    </dl>
+    <p class="drawer-note">Este mapa documenta el proceso actual. La solución y el stack se definirán después de su validación.</p>
+  </aside>
+
+  <script src="./app.js"></script>
+</body>
+</html>
