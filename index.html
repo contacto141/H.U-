@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Mapa actual del funnel comercial: adquisición, calificación, reactivación, asignación y conversión." />
-  <title>Funnel Intelligence · Mapa AS-IS</title>
+  <meta name="description" content="Funnel Intelligence: proceso actual, necesidades y mejoras por área antes de la llegada de ACE." />
+  <title>Funnel Intelligence · AS-IS y necesidades</title>
   <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
@@ -12,15 +12,24 @@
     <header class="topbar">
       <a class="brand" href="#top" aria-label="Funnel Intelligence, inicio">
         <span class="brand-mark">FI</span>
-        <span><strong>Funnel Intelligence</strong><small>Mapa del proceso actual · AS-IS</small></span>
+        <span><strong>Funnel Intelligence</strong><small>AS-IS · Necesidades por área</small></span>
       </a>
       <nav class="top-actions" aria-label="Controles del mapa">
         <button class="ghost-button" id="expandAll" type="button">Mostrar fricciones</button>
-        <span class="version">v0.1 · Validación interna</span>
+        <span class="version">v0.2 · Validación interna</span>
       </nav>
     </header>
 
+    <nav class="view-tabs" aria-label="Secciones de Funnel Intelligence" role="tablist">
+      <button class="view-tab active" type="button" role="tab" aria-selected="true" aria-controls="panel-funnel" id="tab-funnel" data-view="funnel"><span>01</span> Funnel actual</button>
+      <button class="view-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-necesidades" id="tab-necesidades" data-view="necesidades"><span>02</span> Necesidades</button>
+      <button class="view-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-paid" id="tab-paid" data-view="paid"><span>03</span> Paid</button>
+      <button class="view-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-crm" id="tab-crm" data-view="crm"><span>04</span> CRM</button>
+      <button class="view-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-cxc" id="tab-cxc" data-view="cxc"><span>05</span> CXC · Mid-funnel</button>
+    </nav>
+
     <main id="top">
+      <div class="view-panel active" id="panel-funnel" role="tabpanel" aria-labelledby="tab-funnel" data-panel="funnel">
       <section class="intro" aria-labelledby="page-title">
         <div>
           <p class="eyebrow">Una sola lectura para Finanzas, Paid, Marketing, CXC y Comercial</p>
@@ -144,9 +153,160 @@
           <article><span>04</span><h3>El facilitador conoce la intención</h3><p>Pero el ciclo no queda unido al anuncio que originó el lead.</p></article>
         </div>
       </section>
+      </div>
+
+      <div class="view-panel" id="panel-necesidades" role="tabpanel" aria-labelledby="tab-necesidades" data-panel="necesidades" hidden>
+        <section class="area-hero needs-hero">
+          <div class="area-copy">
+            <p class="eyebrow">Necesidad transversal · Ventana de oportunidad</p>
+            <h1>ACE es el destino.<br><span>La visibilidad no puede esperar.</span></h1>
+            <p class="intro-copy">ACE promete automatizar procesos en toda la empresa, identificar cada lead con precisión y fortalecer el seguimiento comercial. El plan y el stack son sólidos; el reto es que su operación viable tomará, al menos, seis meses.</p>
+          </div>
+          <div class="ace-clock" aria-label="Ventana estimada de seis meses antes de ACE">
+            <div class="clock-top"><span>AHORA</span><span>ACE VIABLE</span></div>
+            <div class="clock-track"><i></i></div>
+            <strong>6+ meses</strong>
+            <p>Periodo en el que las decisiones todavía necesitan una lectura común.</p>
+          </div>
+        </section>
+
+        <section class="bridge-section">
+          <div class="section-heading">
+            <div><p class="section-kicker">La necesidad</p><h2>Construir un puente, no otro sistema aislado.</h2></div>
+          </div>
+          <figure class="system-bridge" aria-labelledby="bridge-caption">
+            <div class="bridge-bank current-bank"><small>HOY</small><strong>Fuentes fragmentadas</strong><span>Ads · HubSpot · equipos · bots</span></div>
+            <div class="bridge-span"><span>Funnel Intelligence</span><i></i><small>Lectura compartida + decisiones</small></div>
+            <div class="bridge-bank ace-bank"><small>HORIZONTE</small><strong>ACE</strong><span>Automatización e integración empresarial</span></div>
+            <figcaption id="bridge-caption">La capa intermedia aprovecha el stack actual, genera disciplina de datos y prepara la adopción de ACE.</figcaption>
+          </figure>
+          <div class="need-grid">
+            <article><span>01</span><h3>Decidir durante la transición</h3><p>Leer inversión, calidad y velocidad del funnel sin esperar al cierre mensual ni a la implementación completa de ACE.</p></article>
+            <article><span>02</span><h3>Unificar el lenguaje</h3><p>Dar a Paid, CRM, CXC y Comercial una misma definición de lead, MQL, SQL, tiempos y resultados.</p></article>
+            <article><span>03</span><h3>Llegar preparados a ACE</h3><p>Validar identificadores, eventos, responsables y KPI antes de automatizarlos a escala empresarial.</p></article>
+          </div>
+        </section>
+
+        <section class="impact-overview">
+          <p class="section-kicker">Impacto por área</p><h2>Qué empieza a mejorar</h2>
+          <div class="impact-row">
+            <button class="impact-card" type="button" data-go-view="paid"><span>Paid</span><strong>Velocidad de optimización</strong><p>Performance en tiempo real, narrativas ganadoras y conexión con reactivación.</p><i>Ver detalle →</i></button>
+            <button class="impact-card" type="button" data-go-view="crm"><span>CRM</span><strong>Una lectura always on</strong><p>KPI compartidos, exportación flexible y mayor foco analítico.</p><i>Ver detalle →</i></button>
+            <button class="impact-card pending" type="button" data-go-view="cxc"><span>CXC · Mid-funnel</span><strong>Diseño conjunto pendiente</strong><p>La mejora se definirá con el equipo sobre su operación real.</p><i>Ver alcance →</i></button>
+          </div>
+        </section>
+      </div>
+
+      <div class="view-panel" id="panel-paid" role="tabpanel" aria-labelledby="tab-paid" data-panel="paid" hidden>
+        <section class="area-hero compact-hero">
+          <div class="area-copy">
+            <p class="eyebrow">Área 01 · Paid</p>
+            <h1>De comprar leads<br><span>a entender qué los convierte.</span></h1>
+            <p class="intro-copy">Paid tendrá una lectura continua de performance, creatividad y vida operativa del lead. La optimización dejará de terminar en CPL: llegará hasta MQL, SQL y venta.</p>
+          </div>
+          <div class="area-index"><span>01</span><strong>Paid</strong><small>Adquisición + reactivación</small></div>
+        </section>
+
+        <section class="focus-section">
+          <div class="section-heading"><div><p class="section-kicker">Etapa impactada</p><h2>Paid abre y retroalimenta el funnel</h2></div></div>
+          <figure class="mini-funnel paid-focus" aria-label="Paid impacta planeación, adquisición, atribución y reactivación">
+            <div class="mini-step active"><span>01</span><strong>Inversión</strong><small>Paid</small></div><i>→</i>
+            <div class="mini-step active"><span>02</span><strong>Captación</strong><small>Paid + orgánico</small></div><i>→</i>
+            <div class="mini-step"><span>03</span><strong>CXC</strong><small>Calificación</small></div><i>→</i>
+            <div class="mini-step active"><span>04</span><strong>Reactivación</strong><small>Retargeting</small></div><i>→</i>
+            <div class="mini-step"><span>05</span><strong>Venta</strong><small>Resultado</small></div>
+            <figcaption><b></b> El resultado comercial regresa a campaña, anuncio, creativo y narrativa.</figcaption>
+          </figure>
+        </section>
+
+        <section class="improvement-section">
+          <p class="section-kicker">Qué va a mejorar</p>
+          <div class="improvement-list">
+            <article class="improvement-card"><span class="card-number">01</span><div><h3>Performance y decisiones en tiempo real</h3><p>Las API de Meta, TikTok y Google permitirán conocer el desempeño de cada campaña conforme ocurre. Si la respuesta no es correcta, podremos intervenir antes; si funciona, podremos aplicar boost sin esperar el corte semanal.</p><div class="split-vision"><span><b>PAID</b> Inversión, pacing, CPL y calidad</span><span><b>ORGÁNICO</b> Alcance, interacción y aporte al funnel</span></div></div></article>
+            <article class="improvement-card"><span class="card-number">02</span><div><h3>Narrativas conectadas con conversión</h3><p>Podremos conocer qué tipo de creativo y mensaje funciona, y hasta qué etapa llegó cada lead. Esto permitirá diseñar una parrilla estratégica y replicar las narrativas con mayor conversión.</p><aside class="inline-friction"><b>*</b><span><strong>Fricción actual</strong>No existen sesiones semanales o mensuales que conviertan resultados en directrices para creación de contenido.</span></aside></div></article>
+            <article class="improvement-card"><span class="card-number">03</span><div><h3>Vida operativa y retargeting conectado</h3><p>Paid podrá seguir el recorrido exacto del lead después de la captación y conectarlo con estrategias de reactivación. Así sabremos qué campañas generan leads contactables y cuáles producen MQL recuperados.</p></div></article>
+          </div>
+        </section>
+
+        <section class="connection-section">
+          <div><p class="section-kicker">Conexión en el plan</p><h2>Fuentes y capa de inteligencia</h2></div>
+          <div class="stack-map"><span>HubSpot</span><span>Orquestador <small>por definir</small></span><span>LLM · Codex</span><span>Meta API</span><span>TikTok API</span><span>YouTube API</span><span>Google Ads API</span><span>GA4</span><strong>→ Dashboard unificado</strong></div>
+        </section>
+      </div>
+
+      <div class="view-panel" id="panel-crm" role="tabpanel" aria-labelledby="tab-crm" data-panel="crm" hidden>
+        <section class="area-hero compact-hero">
+          <div class="area-copy">
+            <p class="eyebrow">Área 02 · CRM</p>
+            <h1>Una verdad compartida,<br><span>siempre encendida.</span></h1>
+            <p class="intro-copy">CRM dejará de depender de tableros aislados y cortes manuales. El equipo tendrá un dashboard continuo para entender el funnel, compartir métricas y profundizar en el comportamiento de remarketing.</p>
+          </div>
+          <div class="area-index crm-index"><span>02</span><strong>CRM</strong><small>Lectura transversal</small></div>
+        </section>
+
+        <section class="focus-section">
+          <div class="section-heading"><div><p class="section-kicker">Etapa impactada</p><h2>CRM conecta todas las transiciones</h2></div></div>
+          <figure class="mini-funnel crm-focus" aria-label="CRM conecta todas las etapas del funnel">
+            <div class="mini-step active"><span>01</span><strong>Lead</strong><small>Origen</small></div><i>→</i>
+            <div class="mini-step active"><span>02</span><strong>Contacto</strong><small>Actividad</small></div><i>→</i>
+            <div class="mini-step active"><span>03</span><strong>MQL</strong><small>Calidad</small></div><i>→</i>
+            <div class="mini-step active"><span>04</span><strong>SQL</strong><small>Interés</small></div><i>→</i>
+            <div class="mini-step active"><span>05</span><strong>Venta</strong><small>Resultado</small></div>
+            <figcaption><b></b> Cada cambio conserva su fecha, origen, responsable y resultado.</figcaption>
+          </figure>
+        </section>
+
+        <section class="improvement-section">
+          <p class="section-kicker">Qué va a mejorar</p>
+          <div class="improvement-list two-items">
+            <article class="improvement-card"><span class="card-number">01</span><div><h3>Reporte general always on</h3><p>Un dashboard continuo permitirá compartir las métricas del equipo de Marketing y exportarlas en PDF, Excel u otros formatos. Diana podrá dedicar menos tiempo a consolidar información y más a entender campañas de remarketing y ejecutar audiencias con datos específicos.</p><div class="benefit-tags"><span>Menos consolidación manual</span><span>Mayor foco analítico</span><span>Sincronía de Marketing</span><span>Exportación flexible</span></div></div></article>
+            <article class="improvement-card"><span class="card-number">02</span><div><h3>KPI claros y comportamiento proyectado</h3><p>El equipo podrá leer conversiones, costos, velocidades y fugas por etapa; comparar resultados contra objetivos y anticipar el cierre esperado del funnel.</p><div class="kpi-strip"><span><small>EFICIENCIA</small>Costo por MQL / SQL</span><span><small>CONVERSIÓN</small>Lead → MQL → SQL</span><span><small>VELOCIDAD</small>Tiempo por etapa</span><span><small>PROYECCIÓN</small>Resultado esperado</span></div></div></article>
+          </div>
+        </section>
+
+        <section class="connection-section crm-connection">
+          <div><p class="section-kicker">Conexión del proyecto</p><h2>Del registro a la lectura</h2></div>
+          <div class="simple-connection"><span><small>SISTEMA DE REGISTRO</small>HubSpot</span><i>→</i><span><small>CAPA DE VISUALIZACIÓN</small>Power BI</span><i>→</i><strong>Dashboard always on</strong></div>
+        </section>
+      </div>
+
+      <div class="view-panel" id="panel-cxc" role="tabpanel" aria-labelledby="tab-cxc" data-panel="cxc" hidden>
+        <section class="area-hero compact-hero">
+          <div class="area-copy">
+            <p class="eyebrow">Área 03 · CXC / Mid-funnel</p>
+            <h1>La operación se diseña<br><span>con quienes la ejecutan.</span></h1>
+            <p class="intro-copy">Esta sección queda deliberadamente abierta hasta validar con CXC el proceso real, sus criterios, tiempos, excepciones y necesidades de lectura.</p>
+          </div>
+          <div class="area-index pending-index"><span>03</span><strong>TBD</strong><small>Workshop con CXC</small></div>
+        </section>
+
+        <section class="focus-section">
+          <div class="section-heading"><div><p class="section-kicker">Etapa por validar</p><h2>Contacto, calificación, reactivación y handoff</h2></div></div>
+          <figure class="mini-funnel cxc-focus" aria-label="CXC impacta el centro del funnel">
+            <div class="mini-step"><span>01</span><strong>Lead</strong><small>Entrada</small></div><i>→</i>
+            <div class="mini-step active"><span>02</span><strong>Contacto</strong><small>CXC manual</small></div><i>→</i>
+            <div class="mini-step active"><span>03</span><strong>Calificación</strong><small>Criterios</small></div><i>→</i>
+            <div class="mini-step active"><span>04</span><strong>MQL</strong><small>Asignación</small></div><i>→</i>
+            <div class="mini-step"><span>05</span><strong>SQL</strong><small>Comercial</small></div>
+            <figcaption><b></b> La definición final se construirá con evidencia operativa del equipo.</figcaption>
+          </figure>
+        </section>
+
+        <section class="workshop-section">
+          <div class="workshop-status"><span>POR DEFINIR</span><h2>Sesión de levantamiento con CXC</h2><p>No se proponen mejoras cerradas hasta entender el trabajo diario, los campos disponibles y los puntos donde realmente se enfría el lead.</p></div>
+          <div class="workshop-grid">
+            <article><span>01</span><strong>Primer contacto</strong><p>Cola, prioridad, canales, responsables y tiempo real de respuesta.</p></article>
+            <article><span>02</span><strong>Calificación</strong><p>Criterios, excepciones, motivos de descarte y definición operativa de MQL.</p></article>
+            <article><span>03</span><strong>No respuesta</strong><p>Momento de envío a bots, intentos, canales y reglas de reactivación.</p></article>
+            <article><span>04</span><strong>Asignación</strong><p>Handoff al facilitador, aceptación, carga y SLA comercial.</p></article>
+            <article><span>05</span><strong>Visibilidad</strong><p>Métricas que CXC necesita para operar y señales que deben volver a Marketing.</p></article>
+            <article class="workshop-output"><span>OUTPUT</span><strong>Proceso validado + KPI + campos</strong><p>Base necesaria para completar el mid-funnel y conectarlo con el dashboard.</p></article>
+          </div>
+        </section>
+      </div>
     </main>
 
-    <footer><span>Funnel Intelligence · Documento vivo</span><span>Primero validamos el AS-IS. Después diseñamos el TO-BE y su stack.</span></footer>
+    <footer><span>Funnel Intelligence · Documento vivo</span><span>AS-IS validado por etapas · Necesidades y conexiones por área.</span></footer>
   </div>
 
   <div class="drawer-backdrop" id="drawerBackdrop" hidden></div>
