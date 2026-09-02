@@ -165,3 +165,43 @@ expandButton.addEventListener("click", () => {
   expandButton.textContent = highlighting ? "Ocultar énfasis" : "Mostrar fricciones";
   if (highlighting) document.querySelector(".map-section").scrollIntoView({ behavior: "smooth", block: "start" });
 });
+
+const viewTabs = Array.from(document.querySelectorAll("[data-view]"));
+const viewPanels = Array.from(document.querySelectorAll("[data-panel]"));
+
+function setView(view, updateHash = true) {
+  const nextTab = viewTabs.find((tab) => tab.dataset.view === view) || viewTabs[0];
+  viewTabs.forEach((tab) => {
+    const selected = tab === nextTab;
+    tab.classList.toggle("active", selected);
+    tab.setAttribute("aria-selected", String(selected));
+    tab.tabIndex = selected ? 0 : -1;
+  });
+  viewPanels.forEach((panel) => {
+    const selected = panel.dataset.panel === nextTab.dataset.view;
+    panel.hidden = !selected;
+    panel.classList.toggle("active", selected);
+  });
+  expandButton.hidden = nextTab.dataset.view !== "funnel";
+  if (updateHash) history.replaceState(null, "", `#${nextTab.dataset.view}`);
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+viewTabs.forEach((tab, index) => {
+  tab.addEventListener("click", () => setView(tab.dataset.view));
+  tab.addEventListener("keydown", (event) => {
+    if (!['ArrowLeft', 'ArrowRight'].includes(event.key)) return;
+    event.preventDefault();
+    const direction = event.key === 'ArrowRight' ? 1 : -1;
+    const next = viewTabs[(index + direction + viewTabs.length) % viewTabs.length];
+    setView(next.dataset.view);
+    next.focus();
+  });
+});
+
+document.querySelectorAll("[data-go-view]").forEach((button) => {
+  button.addEventListener("click", () => setView(button.dataset.goView));
+});
+
+const initialView = location.hash.replace("#", "");
+setView(viewPanels.some((panel) => panel.dataset.panel === initialView) ? initialView : "funnel", false);
