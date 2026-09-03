@@ -21,15 +21,100 @@
     </header>
 
     <nav class="view-tabs" aria-label="Secciones de Funnel Intelligence" role="tablist">
-      <button class="view-tab active" type="button" role="tab" aria-selected="true" aria-controls="panel-funnel" id="tab-funnel" data-view="funnel"><span>01</span> Funnel actual</button>
-      <button class="view-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-necesidades" id="tab-necesidades" data-view="necesidades"><span>02</span> Necesidades</button>
-      <button class="view-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-paid" id="tab-paid" data-view="paid"><span>03</span> Paid</button>
-      <button class="view-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-crm" id="tab-crm" data-view="crm"><span>04</span> CRM</button>
-      <button class="view-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-cxc" id="tab-cxc" data-view="cxc"><span>05</span> CXC · Mid-funnel</button>
+      <button class="view-tab active" type="button" role="tab" aria-selected="true" aria-controls="panel-dashboard" id="tab-dashboard" data-view="dashboard"><span>01</span> Dashboard</button>
+      <button class="view-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-funnel" id="tab-funnel" data-view="funnel"><span>02</span> Funnel actual</button>
+      <button class="view-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-necesidades" id="tab-necesidades" data-view="necesidades"><span>03</span> Necesidades</button>
+      <button class="view-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-paid" id="tab-paid" data-view="paid"><span>04</span> Impacto Paid</button>
+      <button class="view-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-crm" id="tab-crm" data-view="crm"><span>05</span> Impacto CRM</button>
+      <button class="view-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-cxc" id="tab-cxc" data-view="cxc"><span>06</span> CXC · Mid-funnel</button>
     </nav>
 
     <main id="top">
-      <div class="view-panel active" id="panel-funnel" role="tabpanel" aria-labelledby="tab-funnel" data-panel="funnel">
+      <div class="view-panel active dashboard-panel" id="panel-dashboard" role="tabpanel" aria-labelledby="tab-dashboard" data-panel="dashboard">
+        <div class="dashboard-shell">
+          <aside class="dash-sidebar" aria-label="Verticales del dashboard">
+            <div class="dash-brand"><span>HU</span><strong>Intelligence</strong><small>Marketing system</small></div>
+            <nav class="dash-nav">
+              <button class="dash-nav-item active" type="button" data-dashboard-section="general"><i>G</i><span>General</span></button>
+              <button class="dash-nav-item" type="button" data-dashboard-section="paid"><i>P</i><span>Paid</span></button>
+              <button class="dash-nav-item" type="button" data-dashboard-section="crm"><i>C</i><span>CRM</span></button>
+              <button class="dash-nav-item" type="button" data-dashboard-section="contenido"><i>Co</i><span>Contenido</span><em>Próximo</em></button>
+              <button class="dash-nav-item" type="button" data-dashboard-section="growth"><i>Gr</i><span>Growth</span><em>Próximo</em></button>
+            </nav>
+            <div class="dash-source"><b></b><span>Datos demo</span><small>Modelo conectado a API + HubSpot</small></div>
+          </aside>
+
+          <div class="dash-workspace">
+            <header class="dash-header">
+              <div><p class="dash-eyebrow">Dashboard / <span id="dashboardBreadcrumb">General</span></p><h1 id="dashboardTitle">Panorama general</h1><p id="dashboardSubtitle">Una lectura compartida de inversión, adquisición y avance comercial.</p></div>
+              <div class="live-pill"><b></b><span>Always on</span><small>Actualización simulada · 10:42</small></div>
+            </header>
+
+            <section class="filter-bar" aria-label="Filtros del dashboard">
+              <label><span>Desarrollo</span><select id="developmentFilter"><option value="all">Todos los desarrollos</option></select></label>
+              <label><span>Canal</span><select id="channelFilter"><option value="all">Todos los canales</option></select></label>
+              <label class="campaign-filter"><span>Campaña</span><select id="campaignFilter"><option value="all">Todas las campañas</option></select></label>
+              <div class="period-filter"><span>Temporalidad</span><div class="period-options" role="group" aria-label="Temporalidad rápida">
+                <button class="active" type="button" data-period="always">Always on</button>
+                <button type="button" data-period="3">3 días</button>
+                <button type="button" data-period="5">5 días</button>
+                <button type="button" data-period="7">7 días</button>
+                <button type="button" data-period="custom">Personalizar</button>
+              </div></div>
+              <div class="custom-dates" id="customDates" hidden><label><span>Desde</span><input id="dateFrom" type="date" value="2026-08-18"></label><label><span>Hasta</span><input id="dateTo" type="date" value="2026-09-02"></label></div>
+            </section>
+
+            <section class="dash-view active" data-dash-view="general">
+              <div class="demo-notice"><span>DEMO</span> Las cifras de esta versión son simuladas para validar distribución, filtros y decisiones.</div>
+              <div class="dashboard-kpis" id="generalKpis"></div>
+              <div class="dashboard-grid general-grid">
+                <article class="dash-card trend-card">
+                  <div class="card-heading"><div><small>Inversión y calidad</small><h2>Ritmo del funnel</h2></div><span id="generalTrendLabel">Vista consolidada</span></div>
+                  <div class="trend-legend"><span><i class="orange"></i>Inversión</span><span><i class="dark"></i>MQL</span><span><i class="teal"></i>SQL</span></div>
+                  <svg class="trend-chart" id="generalTrend" viewBox="0 0 720 250" role="img" aria-label="Tendencia de inversión, MQL y SQL"></svg>
+                </article>
+                <article class="dash-card funnel-card">
+                  <div class="card-heading"><div><small>Conversión</small><h2>Embudo comercial</h2></div><span id="funnelRate">—</span></div>
+                  <div class="compact-funnel" id="generalFunnel"></div>
+                </article>
+                <article class="dash-card channel-card">
+                  <div class="card-heading"><div><small>Distribución</small><h2>Resultados por canal</h2></div></div>
+                  <div class="channel-performance" id="channelPerformance"></div>
+                </article>
+                <article class="dash-card development-card">
+                  <div class="card-heading"><div><small>Desarrollos</small><h2>Calidad de la inversión</h2></div></div>
+                  <div class="ranking-table" id="developmentRanking"></div>
+                </article>
+              </div>
+            </section>
+
+            <section class="dash-view" data-dash-view="paid" hidden>
+              <div class="section-intro"><div><span>PAID MEDIA</span><h2>Rendimiento publicitario</h2><p>De la entrega de medios al resultado comercial de cada campaña.</p></div><div class="source-badges"><span>Meta</span><span>TikTok</span><span>Google · GA4</span><span>YouTube</span></div></div>
+              <div class="dashboard-kpis" id="paidKpis"></div>
+              <div class="dashboard-grid paid-grid">
+                <article class="dash-card paid-trend-card"><div class="card-heading"><div><small>Performance</small><h2>Inversión vs. resultados</h2></div><span id="paidTrendLabel">Always on</span></div><svg class="trend-chart" id="paidTrend" viewBox="0 0 860 270" role="img" aria-label="Tendencia del rendimiento publicitario"></svg></article>
+                <article class="dash-card paid-funnel-card"><div class="card-heading"><div><small>Gran total</small><h2>De clic a SQL</h2></div></div><div class="compact-funnel" id="paidFunnel"></div></article>
+                <article class="dash-card campaign-table-card"><div class="card-heading"><div><small>Campañas activas</small><h2>Detalle de performance</h2></div><span id="campaignCount">0 campañas</span></div><div class="data-table-wrap"><table><thead><tr><th>Campaña</th><th>Canal</th><th>Inversión</th><th>Leads</th><th>MQL</th><th>SQL</th><th>CPL</th><th>CTR</th></tr></thead><tbody id="paidCampaignTable"></tbody></table></div></article>
+              </div>
+            </section>
+
+            <section class="dash-view" data-dash-view="crm" hidden>
+              <div class="section-intro"><div><span>CRM + HUBSPOT</span><h2>Calidad y seguimiento del lead</h2><p>Una lectura continua del inventario comercial y la oportunidad de remarketing.</p></div><div class="source-badges"><span>HubSpot</span><span>Canales API</span><span>Repositorios externos</span></div></div>
+              <div class="dashboard-kpis" id="crmKpis"></div>
+              <div class="dashboard-grid crm-grid">
+                <article class="dash-card crm-funnel-card"><div class="card-heading"><div><small>Lifecycle</small><h2>Estado del inventario</h2></div><span id="crmConversion">—</span></div><div class="crm-pipeline" id="crmPipeline"></div></article>
+                <article class="dash-card remarketing-card"><span class="remarketing-tag">OPORTUNIDAD</span><h2>Pool de remarketing</h2><strong id="remarketingTotal">0</strong><p>Leads todavía sin calificación disponibles para secuencias de recuperación.</p><div id="remarketingBreakdown"></div></article>
+                <article class="dash-card crm-table-card"><div class="card-heading"><div><small>Calidad de fuente</small><h2>Conversión hacia MQL y SQL</h2></div></div><div class="data-table-wrap"><table><thead><tr><th>Origen</th><th>Leads</th><th>Sin calificar</th><th>MQL</th><th>SQL</th><th>Lead → MQL</th></tr></thead><tbody id="crmSourceTable"></tbody></table></div></article>
+              </div>
+            </section>
+
+            <section class="dash-view empty-module" data-dash-view="contenido" hidden><span>CONTENIDO</span><h2>Módulo preparado para la siguiente fase</h2><p>Aquí conectaremos narrativas, formatos, creative ID, parrilla y avance real dentro del funnel.</p><button type="button" data-dashboard-section="paid">Ver aprendizaje desde Paid</button></section>
+            <section class="dash-view empty-module" data-dash-view="growth" hidden><span>GROWTH</span><h2>Módulo preparado para la siguiente fase</h2><p>Aquí consolidaremos experimentos, hipótesis, cohorts y oportunidades de crecimiento.</p><button type="button" data-dashboard-section="general">Volver al panorama general</button></section>
+          </div>
+        </div>
+      </div>
+
+      <div class="view-panel" id="panel-funnel" role="tabpanel" aria-labelledby="tab-funnel" data-panel="funnel" hidden>
       <section class="intro" aria-labelledby="page-title">
         <div>
           <p class="eyebrow">Una sola lectura para Finanzas, Paid, Marketing, CXC y Comercial</p>

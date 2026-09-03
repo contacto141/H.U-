@@ -204,4 +204,218 @@ document.querySelectorAll("[data-go-view]").forEach((button) => {
 });
 
 const initialView = location.hash.replace("#", "");
-setView(viewPanels.some((panel) => panel.dataset.panel === initialView) ? initialView : "funnel", false);
+setView(viewPanels.some((panel) => panel.dataset.panel === initialView) ? initialView : "dashboard", false);
+
+const dashboardRows = [
+  { id: "av-meta-preventa", development: "Altavista Residencial", channel: "Meta", campaign: "Preventa Altavista · Formularios", investment: 38200, impressions: 540000, clicks: 14700, leads: 412, mql: 96, sql: 31 },
+  { id: "av-google-search", development: "Altavista Residencial", channel: "Google", campaign: "Search · Casas en Querétaro", investment: 29700, impressions: 124000, clicks: 9200, leads: 298, mql: 74, sql: 28 },
+  { id: "av-youtube-tour", development: "Altavista Residencial", channel: "YouTube", campaign: "Video · Tour de amenidades", investment: 9800, impressions: 310000, clicks: 4100, leads: 82, mql: 17, sql: 4 },
+  { id: "le-meta-showroom", development: "Los Encinos", channel: "Meta", campaign: "Remarketing · Visita showroom", investment: 26500, impressions: 390000, clicks: 9800, leads: 274, mql: 62, sql: 19 },
+  { id: "le-tiktok-familias", development: "Los Encinos", channel: "TikTok", campaign: "Video · Tu primera casa", investment: 18900, impressions: 610000, clicks: 7200, leads: 216, mql: 38, sql: 8 },
+  { id: "le-google-marca", development: "Los Encinos", channel: "Google", campaign: "Search · Los Encinos marca", investment: 15400, impressions: 87000, clicks: 4800, leads: 143, mql: 41, sql: 13 },
+  { id: "vs-meta-infonavit", development: "Villa Serena", channel: "Meta", campaign: "Crédito Infonavit · Leads", investment: 22100, impressions: 355000, clicks: 8900, leads: 231, mql: 45, sql: 11 },
+  { id: "vs-tiktok-recorrido", development: "Villa Serena", channel: "TikTok", campaign: "Recorrido vertical · Modelo A", investment: 16600, impressions: 505000, clicks: 6100, leads: 155, mql: 24, sql: 5 },
+  { id: "vs-google-vivienda", development: "Villa Serena", channel: "Google", campaign: "Search · Vivienda Aguascalientes", investment: 13200, impressions: 79000, clicks: 3900, leads: 121, mql: 32, sql: 9 },
+  { id: "pn-meta-inversion", development: "Paseo Norte", channel: "Meta", campaign: "Inversión patrimonial · Carrusel", investment: 24300, impressions: 370000, clicks: 9000, leads: 246, mql: 58, sql: 17 },
+  { id: "pn-youtube-zona", development: "Paseo Norte", channel: "YouTube", campaign: "Video · Conoce la zona", investment: 11200, impressions: 330000, clicks: 4500, leads: 91, mql: 19, sql: 5 },
+  { id: "pn-google-premium", development: "Paseo Norte", channel: "Google", campaign: "Search · Residencial premium", investment: 17700, impressions: 96000, clicks: 5200, leads: 162, mql: 47, sql: 16 }
+];
+
+const dashState = { section: "general", development: "all", channel: "all", campaign: "all", period: "always", customDays: 15 };
+const developmentFilter = document.getElementById("developmentFilter");
+const channelFilter = document.getElementById("channelFilter");
+const campaignFilter = document.getElementById("campaignFilter");
+const customDates = document.getElementById("customDates");
+
+function unique(values) { return [...new Set(values)].sort(); }
+function option(value, label) { return `<option value="${value}">${label}</option>`; }
+function money(value) { return new Intl.NumberFormat("es-MX", { style: "currency", currency: "MXN", maximumFractionDigits: 0 }).format(value); }
+function number(value) { return new Intl.NumberFormat("es-MX").format(Math.round(value)); }
+function pct(value) { return `${value.toFixed(1)}%`; }
+function periodMultiplier() {
+  if (dashState.period === "always") return 1;
+  if (dashState.period === "custom") return Math.max(.05, Math.min(1.2, dashState.customDays / 30));
+  return Number(dashState.period) / 30;
+}
+function scaled(value) { return Math.max(value > 0 ? 1 : 0, Math.round(value * periodMultiplier())); }
+
+function availableRows(ignoreCampaign = false) {
+  return dashboardRows.filter((row) => {
+    if (dashState.development !== "all" && row.development !== dashState.development) return false;
+    if (dashState.channel !== "all" && row.channel !== dashState.channel) return false;
+    if (!ignoreCampaign && dashState.campaign !== "all" && row.id !== dashState.campaign) return false;
+    return true;
+  });
+}
+
+function aggregate(rows) {
+  return rows.reduce((sum, row) => {
+    ["investment", "impressions", "clicks", "leads", "mql", "sql"].forEach((key) => { sum[key] += scaled(row[key]); });
+    return sum;
+  }, { investment: 0, impressions: 0, clicks: 0, leads: 0, mql: 0, sql: 0 });
+}
+
+function rebuildCampaigns() {
+  const rows = availableRows(true);
+  const valid = rows.some((row) => row.id === dashState.campaign);
+  if (!valid) dashState.campaign = "all";
+  campaignFilter.innerHTML = option("all", "Todas las campañas") + rows.map((row) => option(row.id, row.campaign)).join("");
+  campaignFilter.value = dashState.campaign;
+}
+
+function kpi(label, value, meta, tone = "") {
+  return `<article class="dashboard-kpi ${tone}"><span>${label}</span><strong>${value}</strong><small>${meta}</small></article>`;
+}
+
+function renderKpis(target, items) { document.getElementById(target).innerHTML = items.map((item) => kpi(...item)).join(""); }
+
+function drawTrend(target, totals, variant = "general") {
+  const svg = document.getElementById(target);
+  const points = variant === "paid" ? [0.56,.63,.58,.72,.69,.82,.78,.9,.86,1] : [.52,.58,.64,.61,.73,.76,.71,.84,.89,1];
+  const second = [.38,.46,.43,.57,.55,.68,.66,.79,.77,1];
+  const third = [.25,.31,.29,.42,.39,.52,.49,.62,.68,1];
+  const toPolyline = (series, height) => series.map((value, index) => `${35 + index * 72},${220 - value * height}`).join(" ");
+  svg.innerHTML = `
+    <defs><linearGradient id="orangeFill-${target}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF6900" stop-opacity=".20"/><stop offset="1" stop-color="#FF6900" stop-opacity="0"/></linearGradient></defs>
+    ${[40,85,130,175,220].map((y) => `<line x1="28" x2="700" y1="${y}" y2="${y}" stroke="#DDD7CB" stroke-width="1"/>`).join("")}
+    <polygon points="35,220 ${toPolyline(points,165)} 683,220" fill="url(#orangeFill-${target})"/>
+    <polyline points="${toPolyline(points,165)}" fill="none" stroke="#FF6900" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <polyline points="${toPolyline(second,125)}" fill="none" stroke="#363837" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <polyline points="${toPolyline(third,92)}" fill="none" stroke="#10363E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="683" cy="55" r="5" fill="#FF6900"/><circle cx="683" cy="95" r="5" fill="#363837"/><circle cx="683" cy="128" r="5" fill="#10363E"/>
+    <text x="35" y="244" fill="#71717A" font-size="11">Inicio</text><text x="648" y="244" fill="#71717A" font-size="11">Hoy</text>`;
+  svg.setAttribute("aria-label", `Tendencia para ${money(totals.investment)} de inversión, ${number(totals.mql)} MQL y ${number(totals.sql)} SQL`);
+}
+
+function funnelMarkup(steps) {
+  const max = Math.max(...steps.map((step) => step.value), 1);
+  return steps.map((step, index) => `<div class="funnel-row"><div><span>${step.label}</span><strong>${number(step.value)}</strong></div><div class="funnel-track"><i style="width:${Math.max(7, step.value / max * 100)}%"></i></div><small>${index === 0 ? "Base" : pct(step.value / Math.max(steps[index - 1].value, 1) * 100)}</small></div>`).join("");
+}
+
+function groupBy(rows, key) {
+  return unique(rows.map((row) => row[key])).map((name) => ({ name, totals: aggregate(rows.filter((row) => row[key] === name)) }));
+}
+
+function renderGeneral(rows, totals) {
+  const cpl = totals.leads ? totals.investment / totals.leads : 0;
+  const cpmql = totals.mql ? totals.investment / totals.mql : 0;
+  renderKpis("generalKpis", [
+    ["Inversión", money(totals.investment), "Presupuesto consumido", "accent"],
+    ["Leads", number(totals.leads), `${money(cpl)} por lead`],
+    ["MQL", number(totals.mql), `${money(cpmql)} por MQL`],
+    ["SQL", number(totals.sql), `${pct(totals.sql / Math.max(totals.mql, 1) * 100)} desde MQL`, "dark"],
+    ["Lead → SQL", pct(totals.sql / Math.max(totals.leads, 1) * 100), "Conversión total"]
+  ]);
+  drawTrend("generalTrend", totals);
+  document.getElementById("generalFunnel").innerHTML = funnelMarkup([
+    { label: "Clics", value: totals.clicks }, { label: "Leads", value: totals.leads }, { label: "MQL", value: totals.mql }, { label: "SQL", value: totals.sql }
+  ]);
+  document.getElementById("funnelRate").textContent = `${pct(totals.sql / Math.max(totals.leads, 1) * 100)} Lead → SQL`;
+  const channels = groupBy(rows, "channel");
+  const channelMax = Math.max(...channels.map((item) => item.totals.mql), 1);
+  document.getElementById("channelPerformance").innerHTML = channels.map((item) => `<div><span><b>${item.name}</b><small>${number(item.totals.mql)} MQL · ${number(item.totals.sql)} SQL</small></span><i><b style="width:${item.totals.mql / channelMax * 100}%"></b></i><strong>${money(item.totals.investment)}</strong></div>`).join("") || '<p class="empty-data">Sin datos para estos filtros.</p>';
+  const developments = groupBy(rows, "development").sort((a,b) => b.totals.mql - a.totals.mql);
+  document.getElementById("developmentRanking").innerHTML = developments.map((item, index) => `<div><span>${String(index + 1).padStart(2,"0")}</span><b>${item.name}</b><small>${number(item.totals.leads)} leads</small><strong>${number(item.totals.mql)} MQL</strong><em>${money(item.totals.mql ? item.totals.investment / item.totals.mql : 0)}</em></div>`).join("") || '<p class="empty-data">Sin datos para estos filtros.</p>';
+}
+
+function renderPaid(rows, totals) {
+  const cpl = totals.leads ? totals.investment / totals.leads : 0;
+  const cpmql = totals.mql ? totals.investment / totals.mql : 0;
+  renderKpis("paidKpis", [
+    ["Inversión", money(totals.investment), "Desde API de canales", "accent"],
+    ["Impresiones", number(totals.impressions), "Entrega total"],
+    ["Clics", number(totals.clicks), `${pct(totals.clicks / Math.max(totals.impressions,1) * 100)} CTR`],
+    ["Leads", number(totals.leads), `${money(cpl)} CPL`],
+    ["MQL logrados", number(totals.mql), `${money(cpmql)} por MQL`],
+    ["SQL logrados", number(totals.sql), `${pct(totals.sql / Math.max(totals.mql,1) * 100)} desde MQL`, "dark"]
+  ]);
+  drawTrend("paidTrend", totals, "paid");
+  document.getElementById("paidFunnel").innerHTML = funnelMarkup([
+    { label: "Impresiones", value: totals.impressions }, { label: "Clics", value: totals.clicks }, { label: "Leads", value: totals.leads }, { label: "MQL", value: totals.mql }, { label: "SQL", value: totals.sql }
+  ]);
+  document.getElementById("campaignCount").textContent = `${rows.length} ${rows.length === 1 ? "campaña" : "campañas"}`;
+  document.getElementById("paidCampaignTable").innerHTML = rows.map((row) => {
+    const values = aggregate([row]);
+    return `<tr><td><b>${row.campaign}</b><small>${row.development}</small></td><td><span class="channel-badge ${row.channel.toLowerCase()}">${row.channel}</span></td><td>${money(values.investment)}</td><td>${number(values.leads)}</td><td>${number(values.mql)}</td><td>${number(values.sql)}</td><td>${money(values.leads ? values.investment / values.leads : 0)}</td><td>${pct(values.clicks / Math.max(values.impressions,1) * 100)}</td></tr>`;
+  }).join("") || '<tr><td colspan="8">Sin campañas para estos filtros.</td></tr>';
+}
+
+function renderCrm(rows, totals) {
+  const unqualified = Math.max(0, totals.leads - totals.mql);
+  renderKpis("crmKpis", [
+    ["Leads totales", number(totals.leads), "Ingresados a HubSpot"],
+    ["Sin calificar", number(unqualified), "Pool potencial de remarketing", "accent"],
+    ["MQL totales", number(totals.mql), `${pct(totals.mql / Math.max(totals.leads,1) * 100)} de los leads`],
+    ["SQL totales", number(totals.sql), `${pct(totals.sql / Math.max(totals.mql,1) * 100)} de los MQL`, "dark"],
+    ["Conversión final", pct(totals.sql / Math.max(totals.leads,1) * 100), "Lead → SQL"]
+  ]);
+  document.getElementById("crmConversion").textContent = `${pct(totals.mql / Math.max(totals.leads,1) * 100)} Lead → MQL`;
+  const pipeline = [
+    { label: "Leads recibidos", value: totals.leads, tone: "" },
+    { label: "Sin calificar", value: unqualified, tone: "orange" },
+    { label: "MQL", value: totals.mql, tone: "teal" },
+    { label: "SQL", value: totals.sql, tone: "dark" }
+  ];
+  document.getElementById("crmPipeline").innerHTML = pipeline.map((item) => `<div class="pipeline-row ${item.tone}"><span>${item.label}</span><div><i style="width:${Math.max(4,item.value / Math.max(totals.leads,1) * 100)}%"></i></div><strong>${number(item.value)}</strong><small>${pct(item.value / Math.max(totals.leads,1) * 100)}</small></div>`).join("");
+  document.getElementById("remarketingTotal").textContent = number(unqualified);
+  document.getElementById("remarketingBreakdown").innerHTML = `<span><b>${number(Math.round(unqualified * .46))}</b> sin respuesta</span><span><b>${number(Math.round(unqualified * .34))}</b> validación pendiente</span><span><b>${number(Math.round(unqualified * .20))}</b> datos incompletos</span>`;
+  const sources = groupBy(rows, "channel");
+  document.getElementById("crmSourceTable").innerHTML = sources.map((item) => `<tr><td><b>${item.name}</b></td><td>${number(item.totals.leads)}</td><td>${number(item.totals.leads - item.totals.mql)}</td><td>${number(item.totals.mql)}</td><td>${number(item.totals.sql)}</td><td><span class="conversion-cell"><i style="width:${item.totals.mql / Math.max(item.totals.leads,1) * 100}%"></i>${pct(item.totals.mql / Math.max(item.totals.leads,1) * 100)}</span></td></tr>`).join("") || '<tr><td colspan="6">Sin datos para estos filtros.</td></tr>';
+}
+
+function periodLabel() {
+  if (dashState.period === "always") return "Always on";
+  if (dashState.period === "custom") return `${dashState.customDays} días personalizados`;
+  return `Últimos ${dashState.period} días`;
+}
+
+function renderDashboard() {
+  const rows = availableRows();
+  const totals = aggregate(rows);
+  renderGeneral(rows, totals);
+  renderPaid(rows, totals);
+  renderCrm(rows, totals);
+  document.getElementById("generalTrendLabel").textContent = periodLabel();
+  document.getElementById("paidTrendLabel").textContent = periodLabel();
+}
+
+function setDashboardSection(section) {
+  dashState.section = section;
+  const labels = {
+    general: ["General", "Panorama general", "Una lectura compartida de inversión, adquisición y avance comercial."],
+    paid: ["Paid", "Rendimiento de Paid Media", "Performance por desarrollo, canal y campaña conectado con MQL y SQL."],
+    crm: ["CRM", "Calidad y seguimiento", "Inventario comercial, calificación y oportunidad de remarketing."],
+    contenido: ["Contenido", "Contenido", "Narrativas y formatos conectados con resultados de negocio."],
+    growth: ["Growth", "Growth", "Experimentos y oportunidades para acelerar el funnel."]
+  };
+  document.querySelectorAll("[data-dashboard-section]").forEach((button) => button.classList.toggle("active", button.dataset.dashboardSection === section && button.classList.contains("dash-nav-item")));
+  document.querySelectorAll("[data-dash-view]").forEach((view) => { const active = view.dataset.dashView === section; view.hidden = !active; view.classList.toggle("active", active); });
+  const copy = labels[section];
+  document.getElementById("dashboardBreadcrumb").textContent = copy[0];
+  document.getElementById("dashboardTitle").textContent = copy[1];
+  document.getElementById("dashboardSubtitle").textContent = copy[2];
+}
+
+unique(dashboardRows.map((row) => row.development)).forEach((name) => developmentFilter.insertAdjacentHTML("beforeend", option(name, name)));
+unique(dashboardRows.map((row) => row.channel)).forEach((name) => channelFilter.insertAdjacentHTML("beforeend", option(name, name === "Google" ? "Google · GA4" : name)));
+rebuildCampaigns();
+
+developmentFilter.addEventListener("change", () => { dashState.development = developmentFilter.value; rebuildCampaigns(); renderDashboard(); });
+channelFilter.addEventListener("change", () => { dashState.channel = channelFilter.value; rebuildCampaigns(); renderDashboard(); });
+campaignFilter.addEventListener("change", () => { dashState.campaign = campaignFilter.value; renderDashboard(); });
+document.querySelectorAll("[data-period]").forEach((button) => button.addEventListener("click", () => {
+  dashState.period = button.dataset.period;
+  document.querySelectorAll("[data-period]").forEach((item) => item.classList.toggle("active", item === button));
+  customDates.hidden = dashState.period !== "custom";
+  renderDashboard();
+}));
+document.querySelectorAll("#customDates input").forEach((input) => input.addEventListener("change", () => {
+  const from = new Date(document.getElementById("dateFrom").value);
+  const to = new Date(document.getElementById("dateTo").value);
+  dashState.customDays = Math.max(1, Math.round((to - from) / 86400000) + 1);
+  renderDashboard();
+}));
+document.querySelectorAll("[data-dashboard-section]").forEach((button) => button.addEventListener("click", () => setDashboardSection(button.dataset.dashboardSection)));
+
+setDashboardSection("general");
+renderDashboard();
