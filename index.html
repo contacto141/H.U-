@@ -40,7 +40,7 @@
               <button class="dash-nav-item" type="button" data-dashboard-section="paid"><i>P</i><span>Paid</span></button>
               <button class="dash-nav-item" type="button" data-dashboard-section="crm"><i>C</i><span>CRM</span></button>
               <button class="dash-nav-item" type="button" data-dashboard-section="contenido"><i>Co</i><span>Contenido</span><em>Próximo</em></button>
-              <button class="dash-nav-item" type="button" data-dashboard-section="growth"><i>Gr</i><span>Growth</span><em>Próximo</em></button>
+              <button class="dash-nav-item" type="button" data-dashboard-section="growth"><i>Gr</i><span>Growth</span><em>Nuevo</em></button>
             </nav>
             <div class="dash-source"><b></b><span>Datos demo</span><small>Modelo conectado a API + HubSpot</small></div>
           </aside>
@@ -110,7 +110,27 @@
             </section>
 
             <section class="dash-view empty-module" data-dash-view="contenido" hidden><span>CONTENIDO</span><h2>Módulo preparado para la siguiente fase</h2><p>Aquí conectaremos narrativas, formatos, creative ID, parrilla y avance real dentro del funnel.</p><button type="button" data-dashboard-section="paid">Ver aprendizaje desde Paid</button></section>
-            <section class="dash-view empty-module" data-dash-view="growth" hidden><span>GROWTH</span><h2>Módulo preparado para la siguiente fase</h2><p>Aquí consolidaremos experimentos, hipótesis, cohorts y oportunidades de crecimiento.</p><button type="button" data-dashboard-section="general">Volver al panorama general</button></section>
+            <section class="dash-view growth-view" data-dash-view="growth" hidden>
+              <div class="section-intro"><div><span>GROWTH INTELLIGENCE</span><h2>Retorno, conversión y proyectos activos</h2><p>Del presupuesto publicitario a la venta atribuida, con una vista operativa de las iniciativas de crecimiento.</p></div><div class="source-badges"><span>Inversión</span><span>Ingresos</span><span>ROAS</span><span>CPA</span></div></div>
+              <div class="demo-notice growth-demo"><span>DEMO</span> Ventas e ingresos simulados. ROAS = ingreso atribuido ÷ inversión publicitaria; no representa utilidad.</div>
+              <div class="dashboard-kpis growth-kpis" id="growthKpis"></div>
+
+              <div class="dashboard-grid growth-grid">
+                <article class="dash-card growth-funnel-card"><div class="card-heading"><div><small>Conversión acumulada</small><h2>Del lead a la venta</h2></div><span id="growthConversionLabel">—</span></div><div class="compact-funnel" id="growthFunnel"></div></article>
+                <article class="dash-card growth-return-card"><span class="growth-return-tag">RETORNO ATRIBUIDO</span><strong id="growthRoasHero">0.0x</strong><p id="growthRoasCopy">Sin inversión para los filtros seleccionados.</p><div><span>Inversión <b id="growthInvestmentHero">$0</b></span><span>Ingreso atribuido <b id="growthRevenueHero">$0</b></span><span>Ventas <b id="growthSalesHero">0</b></span></div></article>
+                <article class="dash-card growth-segment-card"><div class="card-heading"><div><small>Detalle de retorno</small><h2>Campaña, desarrollo y canal</h2></div><span id="growthSegmentCount">0 segmentos</span></div><div class="data-table-wrap"><table><thead><tr><th>Campaña</th><th>Canal</th><th>Inversión</th><th>MQL</th><th>SQL</th><th>Ventas</th><th>ROAS</th><th>CPA</th></tr></thead><tbody id="growthSegmentTable"></tbody></table></div></article>
+              </div>
+
+              <section class="growth-opportunity-section" aria-labelledby="growth-opportunity-title">
+                <div class="growth-section-heading"><div><small>LECTURA AUTOMÁTICA</small><h2 id="growth-opportunity-title">Oportunidades detectadas</h2></div><span>Según los filtros activos</span></div>
+                <div class="growth-opportunities" id="growthOpportunities"></div>
+              </section>
+
+              <section class="growth-planning-section" aria-labelledby="growth-planning-title">
+                <div class="growth-section-heading"><div><small>PLANNING</small><h2 id="growth-planning-title">Pipeline de crecimiento</h2><p>Proyectos activos ordenados por etapa, con siguiente hito y progreso.</p></div><div class="planning-legend"><span><i class="priority-high"></i>Alta</span><span><i class="priority-medium"></i>Media</span></div></div>
+                <div class="growth-planning" id="growthPlanning"></div>
+              </section>
+            </section>
           </div>
         </div>
       </div>

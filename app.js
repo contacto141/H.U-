@@ -207,18 +207,28 @@ const initialView = location.hash.replace("#", "");
 setView(viewPanels.some((panel) => panel.dataset.panel === initialView) ? initialView : "dashboard", false);
 
 const dashboardRows = [
-  { id: "av-meta-preventa", development: "Altavista Residencial", channel: "Meta", campaign: "Preventa Altavista · Formularios", investment: 38200, impressions: 540000, clicks: 14700, leads: 412, mql: 96, sql: 31 },
-  { id: "av-google-search", development: "Altavista Residencial", channel: "Google", campaign: "Search · Casas en Querétaro", investment: 29700, impressions: 124000, clicks: 9200, leads: 298, mql: 74, sql: 28 },
-  { id: "av-youtube-tour", development: "Altavista Residencial", channel: "YouTube", campaign: "Video · Tour de amenidades", investment: 9800, impressions: 310000, clicks: 4100, leads: 82, mql: 17, sql: 4 },
-  { id: "le-meta-showroom", development: "Los Encinos", channel: "Meta", campaign: "Remarketing · Visita showroom", investment: 26500, impressions: 390000, clicks: 9800, leads: 274, mql: 62, sql: 19 },
-  { id: "le-tiktok-familias", development: "Los Encinos", channel: "TikTok", campaign: "Video · Tu primera casa", investment: 18900, impressions: 610000, clicks: 7200, leads: 216, mql: 38, sql: 8 },
-  { id: "le-google-marca", development: "Los Encinos", channel: "Google", campaign: "Search · Los Encinos marca", investment: 15400, impressions: 87000, clicks: 4800, leads: 143, mql: 41, sql: 13 },
-  { id: "vs-meta-infonavit", development: "Villa Serena", channel: "Meta", campaign: "Crédito Infonavit · Leads", investment: 22100, impressions: 355000, clicks: 8900, leads: 231, mql: 45, sql: 11 },
-  { id: "vs-tiktok-recorrido", development: "Villa Serena", channel: "TikTok", campaign: "Recorrido vertical · Modelo A", investment: 16600, impressions: 505000, clicks: 6100, leads: 155, mql: 24, sql: 5 },
-  { id: "vs-google-vivienda", development: "Villa Serena", channel: "Google", campaign: "Search · Vivienda Aguascalientes", investment: 13200, impressions: 79000, clicks: 3900, leads: 121, mql: 32, sql: 9 },
-  { id: "pn-meta-inversion", development: "Paseo Norte", channel: "Meta", campaign: "Inversión patrimonial · Carrusel", investment: 24300, impressions: 370000, clicks: 9000, leads: 246, mql: 58, sql: 17 },
-  { id: "pn-youtube-zona", development: "Paseo Norte", channel: "YouTube", campaign: "Video · Conoce la zona", investment: 11200, impressions: 330000, clicks: 4500, leads: 91, mql: 19, sql: 5 },
-  { id: "pn-google-premium", development: "Paseo Norte", channel: "Google", campaign: "Search · Residencial premium", investment: 17700, impressions: 96000, clicks: 5200, leads: 162, mql: 47, sql: 16 }
+  { id: "av-meta-preventa", development: "Altavista Residencial", channel: "Meta", campaign: "Preventa Altavista · Formularios", investment: 38200, impressions: 540000, clicks: 14700, leads: 412, mql: 96, sql: 31, sales: 6, revenue: 8400000 },
+  { id: "av-google-search", development: "Altavista Residencial", channel: "Google", campaign: "Search · Casas en Querétaro", investment: 29700, impressions: 124000, clicks: 9200, leads: 298, mql: 74, sql: 28, sales: 5, revenue: 7250000 },
+  { id: "av-youtube-tour", development: "Altavista Residencial", channel: "YouTube", campaign: "Video · Tour de amenidades", investment: 9800, impressions: 310000, clicks: 4100, leads: 82, mql: 17, sql: 4, sales: 1, revenue: 1550000 },
+  { id: "le-meta-showroom", development: "Los Encinos", channel: "Meta", campaign: "Remarketing · Visita showroom", investment: 26500, impressions: 390000, clicks: 9800, leads: 274, mql: 62, sql: 19, sales: 4, revenue: 7200000 },
+  { id: "le-tiktok-familias", development: "Los Encinos", channel: "TikTok", campaign: "Video · Tu primera casa", investment: 18900, impressions: 610000, clicks: 7200, leads: 216, mql: 38, sql: 8, sales: 1, revenue: 1650000 },
+  { id: "le-google-marca", development: "Los Encinos", channel: "Google", campaign: "Search · Los Encinos marca", investment: 15400, impressions: 87000, clicks: 4800, leads: 143, mql: 41, sql: 13, sales: 3, revenue: 5100000 },
+  { id: "vs-meta-infonavit", development: "Villa Serena", channel: "Meta", campaign: "Crédito Infonavit · Leads", investment: 22100, impressions: 355000, clicks: 8900, leads: 231, mql: 45, sql: 11, sales: 2, revenue: 2600000 },
+  { id: "vs-tiktok-recorrido", development: "Villa Serena", channel: "TikTok", campaign: "Recorrido vertical · Modelo A", investment: 16600, impressions: 505000, clicks: 6100, leads: 155, mql: 24, sql: 5, sales: 1, revenue: 1250000 },
+  { id: "vs-google-vivienda", development: "Villa Serena", channel: "Google", campaign: "Search · Vivienda Aguascalientes", investment: 13200, impressions: 79000, clicks: 3900, leads: 121, mql: 32, sql: 9, sales: 2, revenue: 2700000 },
+  { id: "pn-meta-inversion", development: "Paseo Norte", channel: "Meta", campaign: "Inversión patrimonial · Carrusel", investment: 24300, impressions: 370000, clicks: 9000, leads: 246, mql: 58, sql: 17, sales: 4, revenue: 9200000 },
+  { id: "pn-youtube-zona", development: "Paseo Norte", channel: "YouTube", campaign: "Video · Conoce la zona", investment: 11200, impressions: 330000, clicks: 4500, leads: 91, mql: 19, sql: 5, sales: 1, revenue: 2350000 },
+  { id: "pn-google-premium", development: "Paseo Norte", channel: "Google", campaign: "Search · Residencial premium", investment: 17700, impressions: 96000, clicks: 5200, leads: 162, mql: 47, sql: 16, sales: 4, revenue: 9600000 }
+];
+
+const growthProjects = [
+  { stage: "backlog", title: "Atribución asistida de video", development: "Altavista Residencial", channels: ["YouTube"], campaigns: ["av-youtube-tour"], owner: "Growth + Paid", priority: "medium", progress: 15, next: "Definir ventana de atribución" },
+  { stage: "backlog", title: "Scoring de propensión comercial", development: "Transversal", channels: ["Todos"], campaigns: [], owner: "Growth + CRM", priority: "medium", progress: 10, next: "Validar variables disponibles" },
+  { stage: "validation", title: "Recuperación de abandono de formulario", development: "Transversal", channels: ["Meta", "Google"], campaigns: [], owner: "Growth + Web", priority: "high", progress: 35, next: "Medir abandono por campo" },
+  { stage: "validation", title: "Landing de crédito y precalificación", development: "Villa Serena", channels: ["Meta", "Google"], campaigns: ["vs-meta-infonavit", "vs-google-vivienda"], owner: "Growth + Producto", priority: "high", progress: 40, next: "Lanzar prueba A/B" },
+  { stage: "execution", title: "SLA de primer contacto", development: "Transversal", channels: ["Todos"], campaigns: [], owner: "Growth + CXC", priority: "high", progress: 65, next: "Activar alerta de 10 minutos" },
+  { stage: "execution", title: "Reactivación de no respondidos", development: "Los Encinos", channels: ["Meta"], campaigns: ["le-meta-showroom"], owner: "Growth + CRM", priority: "high", progress: 55, next: "Encender segunda secuencia" },
+  { stage: "measurement", title: "Narrativa de inversión patrimonial", development: "Paseo Norte", channels: ["Meta", "YouTube"], campaigns: ["pn-meta-inversion", "pn-youtube-zona"], owner: "Growth + Contenido", priority: "medium", progress: 82, next: "Cerrar lectura de SQL y ventas" }
 ];
 
 const dashState = { section: "general", development: "all", channel: "all", campaign: "all", period: "always", customDays: 15 };
@@ -230,8 +240,10 @@ const customDates = document.getElementById("customDates");
 function unique(values) { return [...new Set(values)].sort(); }
 function option(value, label) { return `<option value="${value}">${label}</option>`; }
 function money(value) { return new Intl.NumberFormat("es-MX", { style: "currency", currency: "MXN", maximumFractionDigits: 0 }).format(value); }
+function moneyCompact(value) { return new Intl.NumberFormat("es-MX", { style: "currency", currency: "MXN", notation: "compact", maximumFractionDigits: 1 }).format(value); }
 function number(value) { return new Intl.NumberFormat("es-MX").format(Math.round(value)); }
 function pct(value) { return `${value.toFixed(1)}%`; }
+function multiple(value) { return `${value.toFixed(1)}x`; }
 function periodMultiplier() {
   if (dashState.period === "always") return 1;
   if (dashState.period === "custom") return Math.max(.05, Math.min(1.2, dashState.customDays / 30));
@@ -250,9 +262,9 @@ function availableRows(ignoreCampaign = false) {
 
 function aggregate(rows) {
   return rows.reduce((sum, row) => {
-    ["investment", "impressions", "clicks", "leads", "mql", "sql"].forEach((key) => { sum[key] += scaled(row[key]); });
+    ["investment", "impressions", "clicks", "leads", "mql", "sql", "sales", "revenue"].forEach((key) => { sum[key] += scaled(row[key]); });
     return sum;
-  }, { investment: 0, impressions: 0, clicks: 0, leads: 0, mql: 0, sql: 0 });
+  }, { investment: 0, impressions: 0, clicks: 0, leads: 0, mql: 0, sql: 0, sales: 0, revenue: 0 });
 }
 
 function rebuildCampaigns() {
@@ -363,6 +375,88 @@ function renderCrm(rows, totals) {
   document.getElementById("crmSourceTable").innerHTML = sources.map((item) => `<tr><td><b>${item.name}</b></td><td>${number(item.totals.leads)}</td><td>${number(item.totals.leads - item.totals.mql)}</td><td>${number(item.totals.mql)}</td><td>${number(item.totals.sql)}</td><td><span class="conversion-cell"><i style="width:${item.totals.mql / Math.max(item.totals.leads,1) * 100}%"></i>${pct(item.totals.mql / Math.max(item.totals.leads,1) * 100)}</span></td></tr>`).join("") || '<tr><td colspan="6">Sin datos para estos filtros.</td></tr>';
 }
 
+function growthProjectMatches(project) {
+  if (dashState.development !== "all" && project.development !== "Transversal" && project.development !== dashState.development) return false;
+  if (dashState.channel !== "all" && !project.channels.includes("Todos") && !project.channels.includes(dashState.channel)) return false;
+  if (dashState.campaign !== "all" && project.campaigns.length && !project.campaigns.includes(dashState.campaign)) return false;
+  return true;
+}
+
+function renderGrowthPlanning() {
+  const stages = [
+    { id: "backlog", order: "01", label: "Backlog" },
+    { id: "validation", order: "02", label: "Validación" },
+    { id: "execution", order: "03", label: "En ejecución" },
+    { id: "measurement", order: "04", label: "Medición" }
+  ];
+  const projects = growthProjects.filter(growthProjectMatches);
+  document.getElementById("growthPlanning").innerHTML = stages.map((stage) => {
+    const stageProjects = projects.filter((project) => project.stage === stage.id);
+    const cards = stageProjects.map((project) => `
+      <article class="growth-project-card">
+        <div class="growth-project-meta"><span><i class="priority-${project.priority}"></i>${project.priority === "high" ? "Alta" : "Media"}</span><small>${project.progress}%</small></div>
+        <h3>${project.title}</h3>
+        <p>${project.development} · ${project.channels.join(" + ")}</p>
+        <div class="growth-project-owner"><span>Responsable</span><b>${project.owner}</b></div>
+        <div class="growth-project-next"><span>Siguiente hito</span><b>${project.next}</b></div>
+        <div class="growth-project-progress" aria-label="${project.progress}% de avance"><i style="width:${project.progress}%"></i></div>
+      </article>`).join("");
+    return `<section class="growth-planning-column"><header><span>${stage.order}</span><div><h3>${stage.label}</h3><small>${stageProjects.length} ${stageProjects.length === 1 ? "proyecto" : "proyectos"}</small></div></header>${cards || '<div class="growth-planning-empty">Sin proyectos para estos filtros</div>'}</section>`;
+  }).join("");
+}
+
+function renderGrowth(rows, totals) {
+  const leadToMql = totals.mql / Math.max(totals.leads, 1) * 100;
+  const mqlToSql = totals.sql / Math.max(totals.mql, 1) * 100;
+  const sqlToSale = totals.sales / Math.max(totals.sql, 1) * 100;
+  const roas = totals.revenue / Math.max(totals.investment, 1);
+  const cpa = totals.investment / Math.max(totals.sales, 1);
+
+  renderKpis("growthKpis", [
+    ["Inversión", money(totals.investment), "Total publicitario", "accent"],
+    ["Ingreso atribuido", moneyCompact(totals.revenue), `${number(totals.sales)} ventas`],
+    ["Lead → MQL", pct(leadToMql), `${number(totals.mql)} MQL`],
+    ["MQL → SQL", pct(mqlToSql), `${number(totals.sql)} SQL`],
+    ["SQL → Venta", pct(sqlToSale), `${number(totals.sales)} ventas`],
+    ["ROAS", multiple(roas), "Ingreso ÷ inversión", "dark"],
+    ["CPA", money(cpa), "Inversión por venta"]
+  ]);
+
+  document.getElementById("growthFunnel").innerHTML = funnelMarkup([
+    { label: "Leads", value: totals.leads },
+    { label: "MQL", value: totals.mql },
+    { label: "SQL", value: totals.sql },
+    { label: "Ventas", value: totals.sales }
+  ]);
+  document.getElementById("growthConversionLabel").textContent = `${pct(totals.sales / Math.max(totals.leads, 1) * 100)} Lead → Venta`;
+  document.getElementById("growthRoasHero").textContent = multiple(roas);
+  document.getElementById("growthRoasCopy").textContent = totals.investment ? `Por cada $1 invertido se atribuyen ${money(roas)} en ingresos.` : "Sin inversión para los filtros seleccionados.";
+  document.getElementById("growthInvestmentHero").textContent = moneyCompact(totals.investment);
+  document.getElementById("growthRevenueHero").textContent = moneyCompact(totals.revenue);
+  document.getElementById("growthSalesHero").textContent = number(totals.sales);
+
+  document.getElementById("growthSegmentCount").textContent = `${rows.length} ${rows.length === 1 ? "campaña" : "campañas"}`;
+  document.getElementById("growthSegmentTable").innerHTML = rows.map((row) => {
+    const values = aggregate([row]);
+    const rowRoas = values.revenue / Math.max(values.investment, 1);
+    const rowCpa = values.investment / Math.max(values.sales, 1);
+    return `<tr><td><b>${row.campaign}</b><small>${row.development}</small></td><td><span class="channel-badge ${row.channel.toLowerCase()}">${row.channel}</span></td><td>${money(values.investment)}</td><td>${number(values.mql)}</td><td>${number(values.sql)}</td><td>${number(values.sales)}</td><td><b class="growth-roas-cell">${multiple(rowRoas)}</b></td><td>${money(rowCpa)}</td></tr>`;
+  }).join("") || '<tr><td colspan="8">Sin campañas para estos filtros.</td></tr>';
+
+  const measuredRows = rows.map((row) => ({ row, totals: aggregate([row]) }));
+  const strongestReturn = [...measuredRows].sort((a, b) => (b.totals.revenue / Math.max(b.totals.investment, 1)) - (a.totals.revenue / Math.max(a.totals.investment, 1)))[0];
+  const conversionLeak = [...measuredRows].sort((a, b) => (a.totals.mql / Math.max(a.totals.leads, 1)) - (b.totals.mql / Math.max(b.totals.leads, 1)))[0];
+  const scaleSignal = [...measuredRows].sort((a, b) => (b.totals.sales / Math.max(b.totals.sql, 1)) - (a.totals.sales / Math.max(a.totals.sql, 1)))[0];
+  const opportunities = strongestReturn ? [
+    { label: "Mayor retorno", tone: "return", value: multiple(strongestReturn.totals.revenue / Math.max(strongestReturn.totals.investment, 1)), title: strongestReturn.row.campaign, copy: `${strongestReturn.row.development} convierte inversión en ingreso atribuido con el ROAS más alto de la selección.` },
+    { label: "Fuga prioritaria", tone: "leak", value: pct(conversionLeak.totals.mql / Math.max(conversionLeak.totals.leads, 1) * 100), title: conversionLeak.row.campaign, copy: `Es la menor conversión Lead → MQL. Conviene revisar promesa, segmentación y tiempo de primer contacto.` },
+    { label: "Señal para escalar", tone: "scale", value: pct(scaleSignal.totals.sales / Math.max(scaleSignal.totals.sql, 1) * 100), title: scaleSignal.row.campaign, copy: `Tiene la mejor tasa SQL → Venta. Es candidata a una prueba de presupuesto incremental controlada.` }
+  ] : [];
+  document.getElementById("growthOpportunities").innerHTML = opportunities.map((item) => `<article class="growth-opportunity-card ${item.tone}"><span>${item.label}</span><strong>${item.value}</strong><h3>${item.title}</h3><p>${item.copy}</p></article>`).join("") || '<p class="empty-data">No hay oportunidades para calcular con estos filtros.</p>';
+
+  renderGrowthPlanning();
+}
+
 function periodLabel() {
   if (dashState.period === "always") return "Always on";
   if (dashState.period === "custom") return `${dashState.customDays} días personalizados`;
@@ -375,6 +469,7 @@ function renderDashboard() {
   renderGeneral(rows, totals);
   renderPaid(rows, totals);
   renderCrm(rows, totals);
+  renderGrowth(rows, totals);
   document.getElementById("generalTrendLabel").textContent = periodLabel();
   document.getElementById("paidTrendLabel").textContent = periodLabel();
 }
@@ -386,7 +481,7 @@ function setDashboardSection(section) {
     paid: ["Paid", "Rendimiento de Paid Media", "Performance por desarrollo, canal y campaña conectado con MQL y SQL."],
     crm: ["CRM", "Calidad y seguimiento", "Inventario comercial, calificación y oportunidad de remarketing."],
     contenido: ["Contenido", "Contenido", "Narrativas y formatos conectados con resultados de negocio."],
-    growth: ["Growth", "Growth", "Experimentos y oportunidades para acelerar el funnel."]
+    growth: ["Growth", "Growth Intelligence", "Retorno, conversión y planning de los proyectos que aceleran el funnel."]
   };
   document.querySelectorAll("[data-dashboard-section]").forEach((button) => button.classList.toggle("active", button.dataset.dashboardSection === section && button.classList.contains("dash-nav-item")));
   document.querySelectorAll("[data-dash-view]").forEach((view) => { const active = view.dataset.dashView === section; view.hidden = !active; view.classList.toggle("active", active); });

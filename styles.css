@@ -451,6 +451,67 @@ h1, h2, .dash-brand strong { font-family: "Playfair Display", Georgia, serif; }
 .empty-module p { max-width: 550px; margin: 0; color: var(--muted); font-size: .78rem; line-height: 1.55; }
 .empty-module button { margin-top: 24px; padding: 10px 14px; border: 0; border-radius: 7px; color: white; background: var(--onyx); cursor: pointer; }
 
+/* Growth intelligence */
+.growth-kpis { grid-template-columns: repeat(7, minmax(0,1fr)); }
+.growth-kpis .dashboard-kpi { min-height: 122px; padding-left: 14px; padding-right: 14px; }
+.growth-kpis .dashboard-kpi strong { font-size: clamp(1.2rem, 1.55vw, 1.72rem); }
+.growth-grid { grid-template-columns: minmax(0,1.4fr) minmax(300px,.6fr); }
+.growth-funnel-card { min-height: 330px; }
+.growth-return-card { position: relative; min-height: 330px; overflow: hidden; color: white; background: var(--peacock); border-color: var(--peacock); }
+.growth-return-card::after { content: ""; position: absolute; right: -72px; top: -78px; width: 210px; height: 210px; border: 34px solid rgba(255,255,255,.055); border-radius: 50%; }
+.growth-return-tag { display: inline-block; padding: 5px 7px; color: var(--peacock); background: #b9d1d5; border-radius: 4px; font-size: .54rem; font-weight: 900; letter-spacing: .09em; }
+.growth-return-card > strong { position: relative; z-index: 1; display: block; margin: 37px 0 5px; color: white; font-family: "Playfair Display", Georgia, serif; font-size: clamp(3.5rem, 6vw, 5.3rem); letter-spacing: -.075em; line-height: .9; }
+.growth-return-card > p { max-width: 340px; margin: 13px 0 25px; color: rgba(255,255,255,.7); font-size: .72rem; line-height: 1.45; }
+.growth-return-card > div { display: grid; gap: 9px; padding-top: 17px; border-top: 1px solid rgba(255,255,255,.16); }
+.growth-return-card > div span { display: flex; justify-content: space-between; gap: 14px; color: rgba(255,255,255,.62); font-size: .63rem; }
+.growth-return-card > div b { color: white; font-size: .68rem; }
+.growth-segment-card { grid-column: 1 / -1; }
+.growth-roas-cell { color: var(--pumpkin); font-size: .76rem; }
+
+.growth-opportunity-section, .growth-planning-section { margin-top: 26px; }
+.growth-section-heading { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 13px; padding: 0 2px; }
+.growth-section-heading small { display: block; margin-bottom: 5px; color: var(--pumpkin); font-size: .59rem; font-weight: 900; letter-spacing: .1em; }
+.growth-section-heading h2 { font-family: "Playfair Display", Georgia, serif; font-size: 1.45rem; letter-spacing: -.03em; }
+.growth-section-heading p { margin: 7px 0 0; color: var(--muted); font-size: .7rem; }
+.growth-section-heading > span { color: var(--muted); font-size: .64rem; }
+.growth-opportunities { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 12px; }
+.growth-opportunity-card { position: relative; min-height: 210px; padding: 20px; overflow: hidden; background: white; border: 1px solid var(--line); border-top: 4px solid var(--asparagus); border-radius: 12px; box-shadow: 0 10px 28px rgba(54,56,55,.04); }
+.growth-opportunity-card::after { content: ""; position: absolute; right: -28px; bottom: -38px; width: 105px; height: 105px; border: 18px solid rgba(54,56,55,.035); border-radius: 50%; }
+.growth-opportunity-card > span { color: var(--muted); font-size: .58rem; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
+.growth-opportunity-card > strong { display: block; margin-top: 18px; color: var(--peacock); font-family: "Playfair Display", Georgia, serif; font-size: 2.15rem; letter-spacing: -.05em; }
+.growth-opportunity-card h3 { position: relative; z-index: 1; margin-top: 11px; font-size: .8rem; line-height: 1.25; }
+.growth-opportunity-card p { position: relative; z-index: 1; margin: 8px 0 0; color: var(--muted); font-size: .66rem; line-height: 1.5; }
+.growth-opportunity-card.leak { border-top-color: var(--pumpkin); }
+.growth-opportunity-card.leak > strong { color: var(--pumpkin); }
+.growth-opportunity-card.scale { border-top-color: var(--peacock); }
+
+.growth-planning-section { padding: 24px; color: white; background: var(--onyx); border-radius: 16px; box-shadow: 0 20px 45px rgba(54,56,55,.14); }
+.growth-planning-section .growth-section-heading { margin-bottom: 20px; }
+.growth-planning-section .growth-section-heading h2 { color: white; }
+.growth-planning-section .growth-section-heading p, .growth-planning-section .growth-section-heading > span { color: rgba(255,255,255,.55); }
+.planning-legend { display: flex; gap: 14px; color: rgba(255,255,255,.65); font-size: .61rem; }
+.planning-legend span, .growth-project-meta > span { display: inline-flex; align-items: center; gap: 6px; }
+.planning-legend i, .growth-project-meta i { width: 7px; height: 7px; border-radius: 50%; }
+.priority-high { background: var(--pumpkin); box-shadow: 0 0 0 3px rgba(255,105,0,.14); }
+.priority-medium { background: #99b5ba; box-shadow: 0 0 0 3px rgba(153,181,186,.12); }
+.growth-planning { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 10px; }
+.growth-planning-column { min-width: 0; padding: 12px; background: rgba(255,255,255,.045); border: 1px solid rgba(255,255,255,.085); border-radius: 12px; }
+.growth-planning-column > header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.growth-planning-column > header > span { display: grid; place-items: center; width: 30px; height: 30px; color: var(--pumpkin); background: rgba(255,105,0,.1); border: 1px solid rgba(255,105,0,.22); border-radius: 8px; font-size: .59rem; font-weight: 900; }
+.growth-planning-column > header h3 { color: white; font-size: .72rem; }
+.growth-planning-column > header small { display: block; margin-top: 3px; color: rgba(255,255,255,.38); font-size: .55rem; }
+.growth-project-card { margin-top: 9px; padding: 14px; color: var(--onyx); background: #f9f7f2; border-radius: 9px; box-shadow: 0 8px 16px rgba(0,0,0,.08); }
+.growth-project-meta { display: flex; align-items: center; justify-content: space-between; color: var(--muted); font-size: .55rem; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; }
+.growth-project-card h3 { margin-top: 15px; font-family: "Playfair Display", Georgia, serif; font-size: .93rem; line-height: 1.12; }
+.growth-project-card > p { margin: 7px 0 15px; color: var(--muted); font-size: .57rem; line-height: 1.4; }
+.growth-project-owner, .growth-project-next { display: grid; gap: 3px; padding-top: 10px; border-top: 1px solid var(--line); }
+.growth-project-next { margin-top: 9px; }
+.growth-project-owner span, .growth-project-next span { color: var(--muted); font-size: .51rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+.growth-project-owner b, .growth-project-next b { font-size: .6rem; line-height: 1.35; }
+.growth-project-progress { height: 5px; margin-top: 13px; overflow: hidden; background: #e5e1d9; border-radius: 999px; }
+.growth-project-progress i { display: block; height: 100%; background: linear-gradient(90deg,var(--pumpkin),#f4a36b); border-radius: inherit; }
+.growth-planning-empty { min-height: 90px; display: grid; place-items: center; padding: 12px; color: rgba(255,255,255,.34); border: 1px dashed rgba(255,255,255,.13); border-radius: 8px; font-size: .59rem; text-align: center; }
+
 @media (max-width: 1250px) {
   .dashboard-shell { grid-template-columns: 86px minmax(0,1fr); }
   .dash-sidebar { padding-left: 12px; padding-right: 12px; }
@@ -460,15 +521,17 @@ h1, h2, .dash-brand strong { font-family: "Playfair Display", Georgia, serif; }
   .dash-source { display: flex; justify-content: center; }.dash-source b { margin: 0; }
   .filter-bar { grid-template-columns: repeat(3, minmax(150px,1fr)); }.period-filter { grid-column: 1 / -1; }
   .dashboard-kpis, #paidKpis { grid-template-columns: repeat(3,minmax(0,1fr)); }
+  .growth-kpis { grid-template-columns: repeat(4,minmax(0,1fr)); }
 }
 
 @media (max-width: 900px) {
   .dash-workspace { padding: 24px 20px 50px; }
-  .general-grid, .paid-grid, .crm-grid { grid-template-columns: 1fr; }
+  .general-grid, .paid-grid, .crm-grid, .growth-grid { grid-template-columns: 1fr; }
   .channel-performance > div { grid-template-columns: 130px minmax(70px,1fr) 76px; }
   .paid-funnel-card { grid-row: auto; }
   .filter-bar { grid-template-columns: 1fr 1fr; }.campaign-filter { grid-column: 1 / -1; }
   .period-options { grid-template-columns: repeat(5,minmax(70px,1fr)); overflow-x: auto; }
+  .growth-planning { grid-template-columns: 1fr 1fr; }
 }
 
 @media (max-width: 680px) {
@@ -487,6 +550,7 @@ h1, h2, .dash-brand strong { font-family: "Playfair Display", Georgia, serif; }
   .dash-header { align-items: start; flex-direction: column; gap: 15px; }.dash-header h1 { font-size: 2rem; }.live-pill { min-width: 0; width: 100%; }
   .filter-bar { grid-template-columns: 1fr; padding: 14px; }.campaign-filter, .period-filter { grid-column: auto; }.period-options { grid-template-columns: repeat(5, minmax(76px,1fr)); }.custom-dates { grid-template-columns: 1fr 1fr; justify-content: stretch; }
   .dashboard-kpis, #paidKpis { grid-template-columns: 1fr 1fr; }
+  .growth-kpis { grid-template-columns: 1fr 1fr; }
   .dashboard-kpi { min-height: 102px; padding: 14px; }.dashboard-kpi strong { font-size: 1.4rem; }
   .section-intro { align-items: start; flex-direction: column; }.source-badges { justify-content: flex-start; }
   .dash-card { padding: 16px; }.data-table-wrap { margin-left: -16px; margin-right: -16px; }
@@ -494,6 +558,9 @@ h1, h2, .dash-brand strong { font-family: "Playfair Display", Georgia, serif; }
   .channel-performance > div { grid-template-columns: 110px minmax(55px,1fr); }.channel-performance > div > strong { grid-column: 2; }
   .ranking-table > div { grid-template-columns: 25px minmax(100px,1fr) 65px; }.ranking-table small, .ranking-table em { display: none; }
   .pipeline-row { grid-template-columns: 85px minmax(65px,1fr) 50px; }.pipeline-row > small { display: none; }
+  .growth-opportunities, .growth-planning { grid-template-columns: 1fr; }
+  .growth-planning-section { padding: 17px; }
+  .growth-section-heading { align-items: start; flex-direction: column; gap: 10px; }
 }
 
 /* Development plan */
