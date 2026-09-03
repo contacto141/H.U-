@@ -16,7 +16,7 @@
       </a>
       <nav class="top-actions" aria-label="Controles del mapa">
         <button class="ghost-button" id="expandAll" type="button">Mostrar fricciones</button>
-        <span class="version">v0.2 · Validación interna</span>
+        <span class="version">v0.3 · Validación interna</span>
       </nav>
     </header>
 
@@ -27,6 +27,7 @@
       <button class="view-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-paid" id="tab-paid" data-view="paid"><span>04</span> Impacto Paid</button>
       <button class="view-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-crm" id="tab-crm" data-view="crm"><span>05</span> Impacto CRM</button>
       <button class="view-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-cxc" id="tab-cxc" data-view="cxc"><span>06</span> CXC · Mid-funnel</button>
+      <button class="view-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-plan" id="tab-plan" data-view="plan"><span>07</span> Plan de desarrollo</button>
     </nav>
 
     <main id="top">
@@ -386,6 +387,122 @@
             <article><span>04</span><strong>Asignación</strong><p>Handoff al facilitador, aceptación, carga y SLA comercial.</p></article>
             <article><span>05</span><strong>Visibilidad</strong><p>Métricas que CXC necesita para operar y señales que deben volver a Marketing.</p></article>
             <article class="workshop-output"><span>OUTPUT</span><strong>Proceso validado + KPI + campos</strong><p>Base necesaria para completar el mid-funnel y conectarlo con el dashboard.</p></article>
+          </div>
+        </section>
+      </div>
+
+      <div class="view-panel plan-panel" id="panel-plan" role="tabpanel" aria-labelledby="tab-plan" data-panel="plan" hidden>
+        <section class="plan-hero">
+          <div>
+            <p class="eyebrow">Plan de desarrollo · Puente hacia ACE</p>
+            <h1>Convertir señales dispersas<br><span>en decisiones conectadas.</span></h1>
+            <p class="intro-copy">El objetivo es construir una capa de inteligencia que reúna medios, contenido, HubSpot y operación comercial; conserve la historia del lead y entregue una lectura común mientras ACE alcanza viabilidad.</p>
+          </div>
+          <aside class="plan-principle">
+            <span>PRINCIPIO RECTOR</span>
+            <strong>Una sola verdad, con evidencia.</strong>
+            <p>Cada cifra debe poder rastrearse hasta su fuente, fecha de actualización, regla de cálculo y registro original.</p>
+          </aside>
+        </section>
+
+        <section class="architecture-section" aria-labelledby="architecture-title">
+          <div class="section-heading">
+            <div><p class="section-kicker">Arquitectura propuesta</p><h2 id="architecture-title">Cómo vamos a hacerlo</h2></div>
+            <span class="latency-badge"><b></b> Always on · latencia visible</span>
+          </div>
+
+          <figure class="architecture-map">
+            <div class="architecture-layer source-layer">
+              <header><span>01</span><div><small>ENTRADAS</small><strong>Fuentes operativas</strong></div></header>
+              <div class="source-grid">
+                <article><b>Paid</b><span>Meta · TikTok · Google · YouTube</span><small>Inversión, entrega, clics, campañas y creativos</small></article>
+                <article><b>Analítica</b><span>GA4 + eventos web</span><small>Sesiones, landing, formularios y abandono</small></article>
+                <article><b>CRM</b><span>HubSpot</span><small>Contacto, ticket, lifecycle, MQL, SQL y venta</small></article>
+                <article><b>Operación</b><span>CXC + facilitadores</span><small>Intentos, respuesta, calificación, asignación y SLA</small></article>
+                <article><b>Contenido</b><span>Registro editorial</span><small>Narrativa, formato, pieza, post ID y creative ID</small></article>
+              </div>
+            </div>
+
+            <div class="architecture-arrow"><i>↓</i><span>API · webhooks · cargas controladas</span></div>
+
+            <div class="architecture-layer orchestrator-layer">
+              <header><span>02</span><div><small>ORQUESTACIÓN</small><strong>Coordinación y calidad de entrada</strong></div></header>
+              <div class="orchestrator-core">
+                <div><span>Orquestador</span><strong>Tecnología por definir</strong><small>Programa extracciones, recibe eventos, controla cuotas, reintenta fallos y registra cada ejecución.</small></div>
+                <ul><li>Conectores desacoplados por fuente</li><li>Normalización de fechas, monedas y nombres</li><li>Histórico inmutable antes de transformar</li><li>Alertas por retraso, duplicado o dato faltante</li></ul>
+              </div>
+            </div>
+
+            <div class="architecture-arrow"><i>↓</i><span>Normalizar · validar · conservar</span></div>
+
+            <div class="architecture-layer intelligence-layer">
+              <header><span>03</span><div><small>INTELIGENCIA Y CONCILIACIÓN</small><strong>Reglas verificables + Codex</strong></div></header>
+              <div class="intelligence-split">
+                <article><span>A</span><strong>Reglas determinísticas</strong><p>Los IDs, UTMs y timestamps unen campaña, anuncio, creativo, contenido, lead, ticket y resultado comercial.</p></article>
+                <article class="codex-card"><span>B</span><strong>Codex</strong><p>Detecta discrepancias entre canales y HubSpot, explica la causa probable, prioriza anomalías y propone correcciones.</p></article>
+                <article><span>C</span><strong>Validación humana</strong><p>Los casos ambiguos se revisan antes de cambiar datos maestros o reglas que afecten los KPI.</p></article>
+              </div>
+              <aside class="architecture-note"><b>Decisión de diseño</b> Codex identifica y explica; las uniones críticas no dependen únicamente del LLM. Así el modelo es auditable, corregible y confiable.</aside>
+            </div>
+
+            <div class="architecture-arrow"><i>↓</i><span>Modelo unificado del funnel</span></div>
+
+            <div class="architecture-layer model-layer">
+              <header><span>04</span><div><small>MODELO DE DATOS</small><strong>La historia completa del lead</strong></div></header>
+              <div class="data-spine">
+                <span>Desarrollo</span><i>→</i><span>Canal</span><i>→</i><span>Campaña</span><i>→</i><span>Contenido</span><i>→</i><span>Lead</span><i>→</i><span>MQL</span><i>→</i><span>SQL</span><i>→</i><span>Venta</span>
+              </div>
+              <div class="model-meta"><span><b>ID persistente</b> para cada objeto</span><span><b>Timestamp</b> de cada transición</span><span><b>Origen y responsable</b> conservados</span><span><b>Definición KPI</b> versionada</span></div>
+            </div>
+
+            <div class="architecture-arrow"><i>↓</i><span>Lectura compartida y accionable</span></div>
+
+            <div class="architecture-layer output-layer">
+              <header><span>05</span><div><small>SALIDAS</small><strong>Decisiones por vertical</strong></div></header>
+              <div class="output-grid">
+                <article><span>GENERAL</span><strong>Salud del negocio</strong><p>Inversión, funnel, eficiencia, velocidad y proyección.</p></article>
+                <article><span>PAID</span><strong>Optimización real</strong><p>Pausar, sostener o escalar según MQL, SQL y venta.</p></article>
+                <article><span>CRM</span><strong>Inventario y calidad</strong><p>Lifecycle, fugas, remarketing y conversión por origen.</p></article>
+                <article><span>CONTENIDO</span><strong>Narrativas que convierten</strong><p>Pieza y mensaje conectados con avance real del funnel.</p></article>
+                <article><span>CXC</span><strong>Velocidad operativa</strong><p>Tiempo de respuesta, intentos, SLA y causas de descarte.</p></article>
+                <article><span>GROWTH</span><strong>Experimentación</strong><p>Hipótesis priorizadas por impacto y calidad comercial.</p></article>
+              </div>
+            </div>
+            <figcaption>El resultado no es otro tablero aislado: es una capa de decisión reutilizable y preparada para integrarse con ACE.</figcaption>
+          </figure>
+        </section>
+
+        <section class="foundation-section">
+          <div class="foundation-copy"><p class="section-kicker">Antes de conectar</p><h2>Los acuerdos que hacen confiable la tecnología</h2><p>El stack solo funcionará si existe una definición común de objetos, métricas y responsabilidades.</p></div>
+          <div class="foundation-grid">
+            <article><span>01</span><strong>Taxonomía única</strong><p>Convenciones obligatorias para desarrollo, campaña, anuncio, pieza, narrativa y UTMs.</p></article>
+            <article><span>02</span><strong>Diccionario del funnel</strong><p>Una definición aprobada de lead, contactable, MQL, SQL, venta, descarte y reactivación.</p></article>
+            <article><span>03</span><strong>Eventos y tiempos</strong><p>Timestamps normalizados para entrada, intento, respuesta, calificación, asignación y cierre.</p></article>
+            <article><span>04</span><strong>Gobierno y acceso</strong><p>Responsables de calidad, permisos mínimos, datos personales protegidos y bitácora de cambios.</p></article>
+            <article><span>05</span><strong>Observabilidad</strong><p>Monitoreo de conectores, cuotas, errores, latencia y última actualización visible.</p></article>
+            <article><span>06</span><strong>Control de versiones</strong><p>Cambios en reglas y KPI documentados para poder explicar cualquier variación histórica.</p></article>
+          </div>
+        </section>
+
+        <section class="roadmap-section">
+          <div class="section-heading"><div><p class="section-kicker">Ruta intensiva</p><h2>MVP operativo en 6 semanas máximo</h2></div><p class="roadmap-caveat">Trabajo paralelo con decisiones semanales. Requiere accesos, owners y definiciones entregados sin bloqueos.</p></div>
+          <div class="roadmap-track">
+            <article><span>Semana 1</span><strong>Definir</strong><p>KPI, taxonomía, IDs, owners, accesos y criterios de calidad.</p><small>Salida: contrato de datos</small></article>
+            <article><span>Semanas 2–3</span><strong>Conectar</strong><p>Fuentes prioritarias, histórico base, normalización, bitácoras y monitoreo.</p><small>Salida: ingesta estable</small></article>
+            <article><span>Semana 4</span><strong>Conciliar</strong><p>Modelo unificado, reglas de unión y agente Codex para discrepancias.</p><small>Salida: verdad trazable</small></article>
+            <article><span>Semana 5</span><strong>Visualizar</strong><p>General, Paid, CRM, Contenido y primera lectura operativa de CXC.</p><small>Salida: dashboard piloto</small></article>
+            <article><span>Semana 6</span><strong>Activar</strong><p>Alertas, rituales de decisión, remarketing y documentación para ACE.</p><small>Salida: operación always on</small></article>
+          </div>
+        </section>
+
+        <section class="success-section">
+          <div><p class="section-kicker">Definición de éxito</p><h2>Sabremos que funciona cuando…</h2></div>
+          <div class="success-grid">
+            <article><b>01</b><p>Una inversión puede rastrearse hasta MQL, SQL y venta.</p></article>
+            <article><b>02</b><p>Contenido conoce qué narrativa convierte y no solo cuál genera interacción.</p></article>
+            <article><b>03</b><p>CXC puede explicar tiempos, carga, contacto y causas de pérdida.</p></article>
+            <article><b>04</b><p>Las discrepancias se detectan antes de llegar al reporte ejecutivo.</p></article>
+            <article><b>05</b><p>Las decisiones dejan registro: qué cambió, por qué y cuál fue el resultado.</p></article>
           </div>
         </section>
       </div>
